@@ -1,0 +1,63 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Filmy.master.cs" Inherits="FilmyProject.Filmy" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Filmy</title>
+
+    <link href="css/reset.css" rel="stylesheet" />
+    <link href="css/header.css" rel="stylesheet" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <header class="header">
+        <div class="header-box">
+            <div class="header-box-image-wrapper">
+                <!-- <img src="../images/header-image.png" class="header-box-image" alt=""> -->
+                <div class="header-box-image-shade"></div>
+            </div>
+            <div class="header-box-text-wrapper">
+                <h1 class="header-box-text">Filmy</h1>
+            </div>
+        </div>
+            <div class="header-nav">
+                <div class="header-nav-wrapper">
+                    <div class="header-nav-link active">
+                        <a href="index.aspx" class="header-nav-link-text">Home</a>
+                    </div>
+                    <div class="header-nav-link">
+                        <a href="critics.aspx" class="header-nav-link-text">Critics</a>
+                    </div>
+                    <div class="header-nav-link">
+                        <a href="movies.aspx" class="header-nav-link-text">Movies</a>
+                    </div>
+                    <div class="header-nav-link">
+                        <a href="reviews.aspx" class="header-nav-link-text">Reviews</a>
+                    </div>
+                    <div class="header-nav-link">
+                        <a href="about.aspx" class="header-nav-link-text">About</a>
+                    </div>
+                    <div class="header-nav-buttons">
+                        <%--<a href="login.aspx"><button class="header-nav-buttons-object">Log In</button></a>--%> <%--link button--%>
+                        <asp:LinkButton ID="LinkButton1" runat="server" class="header-nav-buttons-object" Font-Underline="false" OnClick="LinkButton1_Click">Log In</asp:LinkButton>
+                        <%--<a href="signin.aspx"><button class="header-nav-buttons-object">Sign In</button></a>--%> <%--link button--%>
+                        <asp:LinkButton ID="LinkButton2" runat="server" class="header-nav-buttons-object" Font-Underline="false" OnClick="LinkButton2_Click">Sign In</asp:LinkButton>
+                    </div>
+                </div>
+            </div>
+    </header>
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>

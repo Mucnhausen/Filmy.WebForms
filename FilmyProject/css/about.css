@@ -1,0 +1,91 @@
+.content {
+    color: #444;
+
+    justify-content: center;
+    width: 1200px;
+    margin: 40px auto 0 auto;
+    padding: 10px;
+}
+
+.slogan {
+    padding: auto;
+
+}
+.slogan-text {
+    font-size: 54px;
+    text-align: center;
+    font-weight: 800;
+}
+
+.main {
+    display: flex;
+    gap: 50px;
+    margin-top: 30px;
+
+}
+
+.main-text {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 50px;
+}
+
+.main-wrapper {
+    width: 50%;
+    background-image: url('../images/main_content/critic_about.png');
+    border-radius: 20px;
+}
+
+.main-wrapper-image {
+
+}
+
+.main-wrapper-image-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.main-text-about-wrapper {
+    background-color: white;
+    padding: 25px 25px;
+    gap: 500px;
+    border-radius: 20px;
+}
+
+.main-text-contact-wrapper {
+    background-color: #3B1788;
+    padding: 25px 25px;
+    border-radius: 20px;
+
+}
+
+.main-text-about {
+    text-align: center;
+    font-size: 24px;
+}
+
+.main-text-contact {
+    color: white;
+    text-align: center;
+    font-size: 24px;
+}
+
+.main-text-contact-button {
+    background-color: white;
+    border: 7px solid #198754;
+    color: #3B1788;
+    
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 20px 180px;
+
+    font-size: 30px;
+    font-weight: 600;
+    text-decoration: none;
+}
+.main-text-contact-button-link {
+    
+
+}
