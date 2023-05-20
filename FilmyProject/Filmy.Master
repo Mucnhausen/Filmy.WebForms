@@ -8,6 +8,7 @@
 
     <link href="css/reset.css" rel="stylesheet" />
     <link href="css/header.css" rel="stylesheet" />
+    <link href="css/footer.css" rel="stylesheet" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,10 +55,20 @@
                 </div>
             </div>
     </header>
-        <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    <footer class="footer">
+            <div class="footer-nav">
+                <div class="footer-nav-wrapper">
+                    <asp:LinkButton ID="admin_loginLink" runat="server" class="footer-nav-link" Font-Underline="false">Admin Login</asp:LinkButton>
+                    <asp:LinkButton ID="reviews_managmentLink" runat="server" class="footer-nav-link" Font-Underline="false">Reviews Managment</asp:LinkButton>
+                    <asp:LinkButton ID="critics_managmentLink" runat="server" class="footer-nav-link" Font-Underline="false">Critics Managment</asp:LinkButton>
+                    <asp:LinkButton ID="critics_applicationsLink" runat="server" class="footer-nav-link" Font-Underline="false">Critics Applications</asp:LinkButton>
+                </div>
+            </div>
+    </footer>
     </form>
 </body>
 </html>

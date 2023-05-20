@@ -1,0 +1,25 @@
+﻿.footer {
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 1200px;
+}
+
+.footer-nav {
+    gap: 4px;
+    background-color: #4e328bd3;
+    width: 1200px;
+    height: 65px;
+    border-radius: 10px;
+}
+
+.footer-nav-wrapper {
+    display: flex;
+    justify-content: center;
+    /* padding: 21px 252px; */
+}
+
+.footer-nav-link {
+    margin: 7px 10px;
+    padding: 17.5px 30px;
+    color: white;
+}

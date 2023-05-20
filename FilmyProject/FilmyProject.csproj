@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="about.aspx" />
     <Content Include="css\about.css" />
+    <Content Include="css\footer.css" />
     <Content Include="css\header.css" />
     <Content Include="css\index.css" />
     <Content Include="css\login.css" />
