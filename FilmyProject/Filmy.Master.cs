@@ -14,14 +14,34 @@ namespace FilmyProject
 
         }
 
-        protected void LinkButton1_Click(object sender, EventArgs e)
+        protected void LoginLink_Click(object sender, EventArgs e)
         {
             Response.Redirect("login.aspx");
         }
 
-        protected void LinkButton2_Click(object sender, EventArgs e)
+        protected void SigninLink_Click(object sender, EventArgs e)
         {
             Response.Redirect("signin.aspx");
+        }
+
+        protected void Admin_loginLink_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("adminLogin.aspx");
+        }
+
+        protected void Reviews_managmentLink_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("reviewsManagment.aspx");
+        }
+
+        protected void Critics_managmentLink_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("criticsManagment.aspx");
+        }
+
+        protected void Critics_applicationsLink_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("criticsApplications.aspx");
         }
     }
 }

@@ -11,7 +11,7 @@ namespace FilmyProject
 {
 
 
-    public partial class login
+    public partial class passwordReset
     {
 
         /// <summary>
@@ -24,15 +24,6 @@ namespace FilmyProject
         protected global::System.Web.UI.WebControls.TextBox emailBox;
 
         /// <summary>
-        /// passwordBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox passwordBox;
-
-        /// <summary>
         /// submitBtn control.
         /// </summary>
         /// <remarks>
@@ -40,14 +31,5 @@ namespace FilmyProject
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button submitBtn;
-
-        /// <summary>
-        /// password_resetLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton password_resetLink;
     }
 }

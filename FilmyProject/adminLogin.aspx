@@ -1,15 +1,16 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Filmy.Master" AutoEventWireup="true" CodeBehind="login.aspx.cs" Inherits="FilmyProject.login" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Filmy.Master" AutoEventWireup="true" CodeBehind="adminLogin.aspx.cs" Inherits="FilmyProject.adminLogin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/login.css" rel="stylesheet" />
 </asp:Content>
 
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="content">
+        <div class="content">
         <div class="main">
             <div class="main-form">
                 <div class="preform">
                     <div class="slogan">
-                        <h1 class="slogan-text">Critic, fill your credits!</h1>
+                        <h1 class="slogan-text">Welcome, your majesty!</h1>
                     </div>
                     <div class="form" action="">
                         <div class="row divide">

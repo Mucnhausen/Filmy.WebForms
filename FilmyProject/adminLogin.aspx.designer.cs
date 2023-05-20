@@ -11,7 +11,7 @@ namespace FilmyProject
 {
 
 
-    public partial class login
+    public partial class adminLogin
     {
 
         /// <summary>

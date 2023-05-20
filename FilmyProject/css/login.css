@@ -64,7 +64,7 @@
 }
 
 .input1 {
-    width: 50%;
+    width: 100%;
 }
 
 .submit {
@@ -83,4 +83,8 @@ input {
     border: 3px solid #3B1788;
     font-size: 24px;
     padding-left: 15px;
+}
+
+.password-reset {
+    margin-top: 10px;
 }

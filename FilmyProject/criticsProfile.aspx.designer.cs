@@ -11,88 +11,88 @@ namespace FilmyProject
 {
 
 
-    public partial class Filmy
+    public partial class criticsProfile
     {
 
         /// <summary>
-        /// head control.
+        /// emailBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.TextBox emailBox;
 
         /// <summary>
-        /// form1 control.
+        /// first_nameBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.TextBox first_nameBox;
 
         /// <summary>
-        /// LoginLink control.
+        /// last_nameBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LoginLink;
+        protected global::System.Web.UI.WebControls.TextBox last_nameBox;
 
         /// <summary>
-        /// SigninLink control.
+        /// usernameBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton SigninLink;
+        protected global::System.Web.UI.WebControls.TextBox usernameBox;
 
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// birth_dateBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.TextBox birth_dateBox;
 
         /// <summary>
-        /// Admin_loginLink control.
+        /// countryBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Admin_loginLink;
+        protected global::System.Web.UI.WebControls.TextBox countryBox;
 
         /// <summary>
-        /// Reviews_managmentLink control.
+        /// phoneBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Reviews_managmentLink;
+        protected global::System.Web.UI.WebControls.TextBox phoneBox;
 
         /// <summary>
-        /// Critics_managmentLink control.
+        /// descriptionBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Critics_managmentLink;
+        protected global::System.Web.UI.WebControls.TextBox descriptionBox;
 
         /// <summary>
-        /// Critics_applicationsLink control.
+        /// updateBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Critics_applicationsLink;
+        protected global::System.Web.UI.WebControls.Button updateBtn;
     }
 }

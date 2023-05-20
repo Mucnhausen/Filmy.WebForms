@@ -1,0 +1,115 @@
+﻿.content {
+    display: flex;
+    color: #444;
+    width: 1200px;
+    margin: 0 auto 0 auto;
+    padding: 10px;
+}
+
+.main {
+    display: flex;
+    gap: 50px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.main-form {
+    width: 40%;
+}
+
+.slogan {
+    padding: auto;
+}
+
+.slogan-text {
+    font-size: 32px;
+    text-align: center;
+    font-weight: 800;
+}
+
+.main-table-wrapper {
+    width: 60%;
+    height: auto;
+}
+
+.main-table-item {
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.row {
+    display: flex;
+    height: 50px;
+}
+
+.margin-left {
+    margin-left: 50px;
+}
+
+.input1 {
+    width: 50%;
+}
+
+.input2 {
+    width: 100%;
+}
+
+.input3 {
+    width: 60%;
+}
+
+textarea {
+    border-radius: 10px;
+    border: 3px solid #3B1788;
+    font-size: 24px;
+    padding-left: 15px;
+    margin-bottom: 25px;
+    height: 100px;
+
+    resize: none;
+}
+
+.textarea {
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.date {
+    padding-top: 6px;
+}
+
+.add {
+    background-color: #4CAF50;
+    border: none;
+}
+.update {
+    background-color: #fcbb23;
+    border: none;
+}
+.delete {
+    background-color: #e32929;
+    border: none;
+}
+
+.find {
+    width: 40%;
+    background-color: #327da8;
+    border: none;
+}
+
+.buttons {
+    gap: 5px;
+}
+
+input {
+    border-radius: 10px;
+    border: 3px solid #3B1788;
+    font-size: 24px;
+    padding-left: 15px;
+}

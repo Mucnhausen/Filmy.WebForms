@@ -11,88 +11,79 @@ namespace FilmyProject
 {
 
 
-    public partial class Filmy
+    public partial class reviewsManagment
     {
 
         /// <summary>
-        /// head control.
+        /// idBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.TextBox idBox;
 
         /// <summary>
-        /// form1 control.
+        /// findBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Button findBtn;
 
         /// <summary>
-        /// LoginLink control.
+        /// movie_nameBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LoginLink;
+        protected global::System.Web.UI.WebControls.TextBox movie_nameBox;
 
         /// <summary>
-        /// SigninLink control.
+        /// ratingBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton SigninLink;
+        protected global::System.Web.UI.WebControls.TextBox ratingBox;
 
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// reviewBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.TextBox reviewBox;
 
         /// <summary>
-        /// Admin_loginLink control.
+        /// updateBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Admin_loginLink;
+        protected global::System.Web.UI.WebControls.Button updateBtn;
 
         /// <summary>
-        /// Reviews_managmentLink control.
+        /// deleteBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Reviews_managmentLink;
+        protected global::System.Web.UI.WebControls.Button deleteBtn;
 
         /// <summary>
-        /// Critics_managmentLink control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Critics_managmentLink;
-
-        /// <summary>
-        /// Critics_applicationsLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Critics_applicationsLink;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
     }
 }
