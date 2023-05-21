@@ -11,7 +11,11 @@ namespace FilmyProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["role"].ToString() == "admin" || Session["role"].ToString() == "critic")
+            {
+                Response.Write("You have no rights to view the content of that page");
+                Response.End();
+            }
         }
     }
 }
