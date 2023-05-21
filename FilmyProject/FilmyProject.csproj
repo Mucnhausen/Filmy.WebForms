@@ -85,6 +85,7 @@
     <Content Include="css\criticsManagment.css" />
     <Content Include="css\reviewsManagment.css" />
     <Content Include="css\signin.css" />
+    <Content Include="Global.asax" />
     <Content Include="images\critics\kenneth_turan.jpg" />
     <Content Include="images\critics\mark_kermode.jpg" />
     <Content Include="images\critics\roger_ebert.jpg" />
@@ -155,6 +156,9 @@
     </Compile>
     <Compile Include="Filmy.Master.designer.cs">
       <DependentUpon>Filmy.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
