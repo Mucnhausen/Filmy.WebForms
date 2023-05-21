@@ -14,6 +14,11 @@ namespace FilmyProject
 
         }
 
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Response.Redirect(DropDownList1.SelectedValue);
+        }
+
         protected void LoginLink_Click(object sender, EventArgs e)
         {
             Response.Redirect("login.aspx");

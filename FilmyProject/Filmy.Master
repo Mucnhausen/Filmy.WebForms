@@ -51,6 +51,11 @@
                         <asp:LinkButton ID="LoginLink" runat="server" class="header-nav-buttons-object" Font-Underline="false" OnClick="LoginLink_Click">Log In</asp:LinkButton>
                         <%--<a href="signin.aspx"><button class="header-nav-buttons-object">Sign In</button></a>--%><%--link button--%>
                         <asp:LinkButton ID="SigninLink" runat="server" class="header-nav-buttons-object" Font-Underline="false" OnClick="SigninLink_Click">Sign In</asp:LinkButton>
+                        <asp:dropdownlist id="DropDownList1" runat="server" autopostback="True" onselectedindexchanged="DropDownList1_SelectedIndexChanged" class="header-nav-buttons-object">
+                           <asp:listitem>Choose Action</asp:listitem>
+                           <asp:listitem value="criticsProfile.aspx">My Profile</asp:listitem>
+                           <asp:listitem value="criticsOwnReviews.aspx">My Reviews</asp:listitem>
+                        </asp:dropdownlist>
                     </div>
                 </div>
             </div>
