@@ -63,9 +63,6 @@
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
-        <asp:LinkButton ID="Visitor" runat="server" OnClick="Visitor_Click">Visitor</asp:LinkButton>
-        <asp:LinkButton ID="Critic" runat="server" OnClick="Critic_Click">Critic</asp:LinkButton>
-        <asp:LinkButton ID="Admin" runat="server" OnClick="Admin_Click">Admin</asp:LinkButton>
     </div>
     <footer class="footer">
             <div class="footer-nav">

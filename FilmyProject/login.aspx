@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="password-reset">
-                        <asp:LinkButton ID="password_resetLink" runat="server" Font-Underline="false">Forgot Password?</asp:LinkButton>
+                        <asp:LinkButton ID="password_resetLink" runat="server" Font-Underline="false" OnClick="password_resetLink_Click">Forgot Password?</asp:LinkButton>
                     </div>
                 </div>
                 

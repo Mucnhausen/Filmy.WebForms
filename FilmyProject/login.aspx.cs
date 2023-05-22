@@ -11,7 +11,11 @@ namespace FilmyProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+        }
 
+        protected void password_resetLink_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("passwordReset.aspx");
         }
     }
 }

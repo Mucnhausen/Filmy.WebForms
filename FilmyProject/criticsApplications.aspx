@@ -36,8 +36,8 @@
                         <asp:TextBox ID="descriptionBox" runat="server" TextMode="MultiLine" Rows="4" class="input2" placeholder="Tell about yourself"></asp:TextBox>
                     </div>
                     <div class="row buttons">
-                        <asp:Button ID="addBtn" runat="server" class="input2 add" Text="Add"/>
-                        <asp:Button ID="deleteBtn" runat="server" class="input2 delete" Text="Delete"/>
+                        <asp:Button ID="addBtn" runat="server" class="input2 add" Text="Accept"/>
+                        <asp:Button ID="deleteBtn" runat="server" class="input2 delete" Text="Decline"/>
                     </div>
                 </div>
             </div>

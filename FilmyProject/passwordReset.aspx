@@ -17,7 +17,7 @@
                             <asp:TextBox ID="emailBox" runat="server" class="input1" TextMode="Email" placeholder="Email" autofocus="true"></asp:TextBox>
                         </div>
                         <div class="row">
-                            <asp:Button ID="submitBtn" runat="server" class="submit" Text="Send password reset mail"/>
+                            <asp:Button ID="submitBtn" runat="server" class="submit" Text="C'mon send it"/>
                         </div>
                     </div>
                 </div>
