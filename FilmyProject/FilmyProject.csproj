@@ -69,6 +69,10 @@
   <ItemGroup>
     <Content Include="about.aspx" />
     <Content Include="adminLogin.aspx" />
+    <Content Include="App_Data\FilmyDB.mdf" />
+    <Content Include="App_Data\FilmyDB_log.ldf">
+      <DependentUpon>FilmyDB.mdf</DependentUpon>
+    </Content>
     <Content Include="criticsApplications.aspx" />
     <Content Include="criticsManagment.aspx" />
     <Content Include="criticsOwnReviews.aspx" />
