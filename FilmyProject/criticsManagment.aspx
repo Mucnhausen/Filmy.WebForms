@@ -44,6 +44,7 @@
             </div>
             <div class="main-table-wrapper">
                 <asp:GridView ID="GridView1" runat="server"></asp:GridView> <%--Table--%>
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Test]"></asp:SqlDataSource>
                 <div class="main-table-item"></div>
             </div>
         </div>
