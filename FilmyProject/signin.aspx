@@ -29,7 +29,7 @@
                         <%--<input type="text" class="input2" placeholder="Username">--%>
                     </div>
                     <div class="row">
-                        <asp:TextBox ID="birth_dateBox" runat="server" TextMode="Date" class="input2 date"></asp:TextBox>
+                        <asp:TextBox ID="birth_dateBox" runat="server" TextMode="Date" class="input2 date" ></asp:TextBox>
                         <%--<input type="date" class="input2 date">--%>
                     </div>
                     <div class="row">
@@ -45,7 +45,7 @@
                         <%--<input type="text" class="input2" placeholder="Tell about yourself">--%>
                     </div>
                     <div class="row">
-                        <asp:Button ID="submitBtn" runat="server" class="input2 submit" Text="Submit"/>
+                        <asp:Button ID="submitBtn" runat="server" class="input2 submit" Text="Submit" OnClick="submitBtn_Click"/>
                         <%--<input type="submit" class="input2 submit">--%>
                     </div>
                 </div>

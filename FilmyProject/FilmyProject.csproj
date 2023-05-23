@@ -141,6 +141,7 @@
     <Content Include="images\critics\mark_kermode.jpg" />
     <Content Include="images\critics\roger_ebert.jpg" />
     <Content Include="images\main_content\critic_about.png" />
+    <Content Include="images\main_content\critic_default.png" />
     <Content Include="images\main_content\critic_login.png" />
     <Content Include="images\main_content\critic_register.png" />
     <Content Include="images\main_content\header-image.png" />

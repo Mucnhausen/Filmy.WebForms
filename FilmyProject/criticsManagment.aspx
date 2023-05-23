@@ -37,14 +37,14 @@
                         <asp:TextBox ID="descriptionBox" runat="server" TextMode="MultiLine" Rows="4" class="input2" placeholder="Tell about yourself"></asp:TextBox>
                     </div>
                     <div class="row buttons">
-                        <asp:Button ID="updateBtn" runat="server" class="input2 update" Text="Update"/>
-                        <asp:Button ID="deleteBtn" runat="server" class="input2 delete" Text="Delete"/>
+                        <asp:Button ID="updateBtn" runat="server" class="input2 update" Text="Update" OnClick="updateBtn_Click"/>
+                        <asp:Button ID="deleteBtn" runat="server" class="input2 delete" Text="Delete" OnClick="deleteBtn_Click"/>
                     </div>
                 </div>
             </div>
             <div class="main-table-wrapper">
                 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [critics]"></asp:SqlDataSource>
-                <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" class="table"></asp:GridView> <%--Table--%>
+                <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" class="table" style="background-color: white;"></asp:GridView> <%--Table--%>
                 <div class="main-table-item">
 <%--                    <table id="myTable" class="display table">
                     <thead>
