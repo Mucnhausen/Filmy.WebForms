@@ -15,44 +15,53 @@ namespace FilmyProject
             {
                 LoginLink.Visible = true;
                 SigninLink.Visible = true;
-                DropDownList1.Visible = false;
+                ExitLink.Visible = false;
+
+                NameLabel.Visible = false; NameLabel.Text = null;
 
                 Admin_loginLink.Visible = true;
                 Reviews_managmentLink.Visible = false;
                 Critics_applicationsLink.Visible = false;
                 Critics_managmentLink.Visible = false;
                 Critics_applicationsLink.Visible = false;
+
+                OwnProfile_Link.Visible = false;
+                OwnReviews_Link.Visible = false;
             }
             else if (Session["role"].ToString() == "critic")
             {
                 LoginLink.Visible = false;
                 SigninLink.Visible = false;
-                DropDownList1.Visible = true;
+                ExitLink.Visible = true;
+
+                NameLabel.Visible = true; NameLabel.Text = "Welcome " + Session["username"];
 
                 Admin_loginLink.Visible = false;
                 Reviews_managmentLink.Visible = false;
                 Critics_applicationsLink.Visible = false;
                 Critics_managmentLink.Visible = false;
                 Critics_applicationsLink.Visible = false;
+
+                OwnProfile_Link.Visible = true;
+                OwnReviews_Link.Visible = true;
             }
             else if (Session["role"].ToString() == "admin")
             {
                 LoginLink.Visible = false;
                 SigninLink.Visible = false;
-                DropDownList1.Visible = false;
+                ExitLink.Visible = true;
+
+                NameLabel.Visible = true; NameLabel.Text = "ADMIN: " + Session["username"];
 
                 Admin_loginLink.Visible = false;
                 Reviews_managmentLink.Visible = true;
                 Critics_applicationsLink.Visible = true;
                 Critics_managmentLink.Visible = true;
                 Critics_applicationsLink.Visible = true;
+
+                OwnProfile_Link.Visible = false;
+                OwnReviews_Link.Visible = false;
             }
-        }
-
-
-        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Response.Redirect(DropDownList1.SelectedValue);
         }
 
         protected void LoginLink_Click(object sender, EventArgs e)
@@ -63,6 +72,12 @@ namespace FilmyProject
         protected void SigninLink_Click(object sender, EventArgs e)
         {
             Response.Redirect("signin.aspx");
+        }
+
+        protected void ExitLink_Click(object sender, EventArgs e)
+        {
+            Session["role"] = "visitor"; Session["username"] = "Unknown";
+            Response.Redirect("index.aspx");
         }
 
         protected void Admin_loginLink_Click(object sender, EventArgs e)
@@ -83,6 +98,34 @@ namespace FilmyProject
         protected void Critics_applicationsLink_Click(object sender, EventArgs e)
         {
             Response.Redirect("criticsApplications.aspx");
+        }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            Session["role"] = "visitor";
+            Response.Redirect(Request.RawUrl);
+        }
+
+        protected void LinkButton2_Click(object sender, EventArgs e)
+        {
+            Session["role"] = "critic";
+            Response.Redirect(Request.RawUrl);
+        }
+
+        protected void LinkButton3_Click(object sender, EventArgs e)
+        {
+            Session["role"] = "admin";
+            Response.Redirect(Request.RawUrl);
+        }
+
+        protected void OwnProfile_Link_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("criticsProfile.aspx");
+        }
+
+        protected void OwnReviews_Link_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("criticsOwnReviews.aspx");
         }
     }
 }

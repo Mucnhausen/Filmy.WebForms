@@ -67,15 +67,15 @@
                         <asp:LinkButton ID="LoginLink" runat="server" class="header-nav-buttons-object" Font-Underline="false" OnClick="LoginLink_Click">Log In</asp:LinkButton>
                         <%--<a href="signin.aspx"><button class="header-nav-buttons-object">Sign In</button></a>--%><%--link button--%>
                         <asp:LinkButton ID="SigninLink" runat="server" class="header-nav-buttons-object" Font-Underline="false" OnClick="SigninLink_Click">Sign In</asp:LinkButton>
-                        <asp:dropdownlist id="DropDownList1" runat="server" autopostback="True" onselectedindexchanged="DropDownList1_SelectedIndexChanged" class="header-nav-buttons-object">
-                           <asp:listitem>Choose Action</asp:listitem>
-                           <asp:listitem value="criticsProfile.aspx">My Profile</asp:listitem>
-                           <asp:listitem value="criticsOwnReviews.aspx">My Reviews</asp:listitem>
-                        </asp:dropdownlist>
+                        <asp:Label ID="NameLabel" runat="server" Text="Welcome, Unknown"></asp:Label>
+                        <asp:LinkButton ID="ExitLink" runat="server" class="header-nav-buttons-object" Font-Underline="false" OnClick="ExitLink_Click">Disconnect</asp:LinkButton>
                     </div>
                 </div>
             </div>
     </header>
+        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">visitor</asp:LinkButton>
+        <asp:LinkButton ID="LinkButton2" runat="server" OnClick="LinkButton2_Click">critic</asp:LinkButton>
+        <asp:LinkButton ID="LinkButton3" runat="server" OnClick="LinkButton3_Click">admin</asp:LinkButton>
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
@@ -87,6 +87,9 @@
                     <asp:LinkButton ID="Reviews_managmentLink" runat="server" class="footer-nav-link" Font-Underline="false" OnClick="Reviews_managmentLink_Click">Reviews Managment</asp:LinkButton>
                     <asp:LinkButton ID="Critics_managmentLink" runat="server" class="footer-nav-link" Font-Underline="false" OnClick="Critics_managmentLink_Click">Critics Managment</asp:LinkButton>
                     <asp:LinkButton ID="Critics_applicationsLink" runat="server" class="footer-nav-link" Font-Underline="false" OnClick="Critics_applicationsLink_Click">Critics Applications</asp:LinkButton>
+
+                    <asp:LinkButton ID="OwnProfile_Link" runat="server" class="footer-nav-link" Font-Underline="false" OnClick="OwnProfile_Link_Click">My Profile</asp:LinkButton>
+                    <asp:LinkButton ID="OwnReviews_Link" runat="server" class="footer-nav-link" Font-Underline="false" OnClick="OwnReviews_Link_Click">My Reviews</asp:LinkButton>
                 </div>
             </div>
     </footer>

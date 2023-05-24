@@ -19,10 +19,9 @@
                         <asp:TextBox ID="first_nameBox" runat="server" class="input1" placeholder="First Name"></asp:TextBox>
                         <asp:TextBox ID="last_nameBox" runat="server" class="input1 margin-left" placeholder="Last Name"></asp:TextBox>
                     </div>
-                    
                     <div class="row">
                         <asp:TextBox ID="usernameBox" runat="server" class="input3" placeholder="Username"></asp:TextBox>
-                        <asp:Button ID="findBtn" runat="server" class="find margin-left" Text="Find"/>
+                        <asp:Button ID="findBtn" runat="server" class="find margin-left" Text="Find" OnClick="findBtn_Click"/>
                     </div>
                     <div class="row">
                         <asp:TextBox ID="birth_dateBox" runat="server" TextMode="Date" class="input2 date"></asp:TextBox>
@@ -32,6 +31,9 @@
                     </div>
                     <div class="row">
                         <asp:TextBox ID="phoneBox" runat="server" TextMode="Phone" class="input2" placeholder="Phone No"></asp:TextBox>
+                    </div>
+                    <div class="row">
+                        <asp:TextBox ID="pendingBox" runat="server" class="input2" placeholder="Pending"></asp:TextBox>
                     </div>
                     <div class="row textarea">
                         <asp:TextBox ID="descriptionBox" runat="server" TextMode="MultiLine" Rows="4" class="input2" placeholder="Tell about yourself"></asp:TextBox>
