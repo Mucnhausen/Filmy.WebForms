@@ -108,6 +108,7 @@
     <Content Include="criticsProfile.aspx" />
     <Content Include="css\about.css" />
     <Content Include="css\criticsProfile.css" />
+    <Content Include="css\dropdownlist.css" />
     <Content Include="css\footer.css" />
     <Content Include="css\header.css" />
     <Content Include="css\index.css" />
