@@ -178,6 +178,7 @@
     <Content Include="images\movies\starwars_6.jpg" />
     <Content Include="login.aspx" />
     <Content Include="movies.aspx" />
+    <Content Include="moviesManagment.aspx" />
     <Content Include="passwordReset.aspx" />
     <Content Include="reviews.aspx" />
     <Content Include="reviewsManagment.aspx" />
@@ -253,6 +254,13 @@
     </Compile>
     <Compile Include="movies.aspx.designer.cs">
       <DependentUpon>movies.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="moviesManagment.aspx.cs">
+      <DependentUpon>moviesManagment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="moviesManagment.aspx.designer.cs">
+      <DependentUpon>moviesManagment.aspx</DependentUpon>
     </Compile>
     <Compile Include="passwordReset.aspx.cs">
       <DependentUpon>passwordReset.aspx</DependentUpon>
