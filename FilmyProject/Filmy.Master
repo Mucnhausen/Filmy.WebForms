@@ -14,7 +14,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
 
-    
+    <script src="Scripts/jquery-1.6.3.min.js"></script>
+    <script src="Scripts/toastr.min.js"></script>
+    <link href="content/toastr.min.css" rel="stylesheet" />
+
     <link rel="stylesheet" href="/DataTables/datatables.css" />
     <script src="/DataTables/datatables.js"></script>
 

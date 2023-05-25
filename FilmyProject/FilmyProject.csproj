@@ -100,6 +100,8 @@
     <Content Include="App_Data\FilmyDB_log.ldf">
       <DependentUpon>FilmyDB.mdf</DependentUpon>
     </Content>
+    <Content Include="content\toastr.css" />
+    <Content Include="content\toastr.min.css" />
     <Content Include="criticsApplications.aspx" />
     <Content Include="criticsManagment.aspx" />
     <Content Include="criticsOwnReviews.aspx" />
@@ -182,6 +184,13 @@
     <Content Include="passwordReset.aspx" />
     <Content Include="reviews.aspx" />
     <Content Include="reviewsManagment.aspx" />
+    <Content Include="content\toastr.scss" />
+    <Content Include="content\toastr.less" />
+    <None Include="Scripts\jquery-1.6.3-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.6.3.js" />
+    <Content Include="Scripts\jquery-1.6.3.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="signin.aspx" />
     <Content Include="Web.config" />
     <Content Include="index.aspx" />
