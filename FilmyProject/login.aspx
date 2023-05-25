@@ -13,13 +13,13 @@
                     </div>
                     <div class="form" action="">
                         <div class="row divide">
-                            <asp:TextBox ID="emailBox" runat="server" class="input1" TextMode="Email" placeholder="Email" autofocus="true"></asp:TextBox>
+                            <asp:TextBox ID="usernameBox" runat="server" class="input1" placeholder="Username" autofocus="true"></asp:TextBox>
                             <asp:TextBox ID="passwordBox" runat="server" class="input1 margin-left" TextMode="Password" placeholder="Password"></asp:TextBox>
 <%--                            <input type="text" class="input1" placeholder="Email" autofocus>
                             <input type="text" class="input1 margin-left" placeholder="Password">--%>
                         </div>
                         <div class="row">
-                            <asp:Button ID="submitBtn" runat="server" class="submit" Text="Submit"/>
+                            <asp:Button ID="submitBtn" runat="server" class="submit" Text="Submit" OnClick="submitBtn_Click"/>
                             <%--<input type="submit" class="submit">--%>
                         </div>
                     </div>
