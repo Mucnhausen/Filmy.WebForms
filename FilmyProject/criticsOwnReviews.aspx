@@ -52,7 +52,11 @@
                     </div>
                 </div>
             </div>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [Id], [movie_id], [review_text], [date], [rating] FROM [reviews]"></asp:SqlDataSource>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [Id], [movie_id], [review_text], [date], [rating] FROM [reviews] WHERE critic_username = @critic_username">
+                <SelectParameters>
+                    <asp:SessionParameter Name="critic_username" SessionField="username" Type="String" />
+                </SelectParameters>
+            </asp:SqlDataSource>
             <div class="main-table-wrapper">
                 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1" class="table">
                     <Columns>

@@ -31,7 +31,6 @@ namespace FilmyProject
         {
             if (ifCriticCredentialsCorrect())
             {
-                Response.Write("<script>alert('Hmm');</script>");
                 Session["username"] = usernameBox.Text; Session["role"] = "critic";
                 Response.Redirect("index.aspx");
             } else {

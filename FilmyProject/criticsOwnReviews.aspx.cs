@@ -25,7 +25,9 @@ namespace FilmyProject
                 Response.End();
             }
             GridView1.DataBind();
-            //SqlDataSource1.SelectCommand = "SELECT * FROM reviews WHERE critic_username = " + Session["username"];
+            //SqlDataSource1.SelectCommand = $"SELECT * FROM reviews WHERE critic_username = \" {Session["username"]} \"";
+            //SqlDataSource1.SelectCommand = $"SELECT * FROM reviews WHERE critic_username = \"" + Session["username"] + "\"";
+            //string.Format("Number: {0:N}", 157);
 
         }
         protected void findBtn_Click(object sender, EventArgs e)
@@ -149,8 +151,6 @@ namespace FilmyProject
         {
             try
             {
-                Response.Write("<script>alert('2');</script>");
-
                 con.Open();
                 SqlCommand cmd = new SqlCommand("INSERT INTO reviews(movie_id,critic_username,review_text,date,rating) " +
                     "values(@movie_id,@critic_username,@review_text,@date,@rating)", con);
