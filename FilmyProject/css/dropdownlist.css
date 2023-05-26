@@ -1,5 +1,5 @@
 ﻿.placeholder-class::-webkit-input-placeholder {
-    color: white;
+    color: grey;
 }
 
 .select2.select2-container {
@@ -45,8 +45,8 @@
     border-radius: 0px !important;
     border-bottom: none !important;
     padding: 4px 6px !important;
-    background-color: #3B1788;
-    color: white;
+    background-color: white;
+    color: black;
     // search box
 }
 

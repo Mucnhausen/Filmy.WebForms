@@ -33,24 +33,6 @@ namespace FilmyProject
         protected global::System.Web.UI.WebControls.Button findBtn;
 
         /// <summary>
-        /// movie_nameBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox movie_nameBox;
-
-        /// <summary>
-        /// ratingBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ratingBox;
-
-        /// <summary>
         /// DropDownList_SqlDataSource control.
         /// </summary>
         /// <remarks>
@@ -67,6 +49,15 @@ namespace FilmyProject
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+
+        /// <summary>
+        /// ratingBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ratingBox;
 
         /// <summary>
         /// reviewBox control.
