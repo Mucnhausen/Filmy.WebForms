@@ -37,9 +37,9 @@ namespace FilmyProject
             else
             {
                 addNewCritic();
+                Response.Write("<script>alert('Sign Up Successful. Go to User Login to Login');</script>");
                 sendSuccessSignInEmail();
                 clearForm();
-                Response.Write("<script>alert('Sign Up Successful. Go to User Login to Login');</script>");
             }
         }
 
@@ -65,8 +65,8 @@ namespace FilmyProject
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO critics(username,first_name,last_name,reg_date,birth_date,country,tel,email,articles,description,image_path,password) " +
-                    "values(@username,@first_name,@last_name,@reg_date,@birth_date,@country,@tel,@email,@articles,@description,@image_path,@password)", con);
+                SqlCommand cmd = new SqlCommand("INSERT INTO critics(username,first_name,last_name,reg_date,birth_date,country,tel,email,articles,description,image_path,password, pending) " +
+                    "values(@username,@first_name,@last_name,@reg_date,@birth_date,@country,@tel,@email,@articles,@description,@image_path,@password, @pending)", con);
                 cmd.Parameters.AddWithValue("@username", usernameBox.Text.Trim());
                 cmd.Parameters.AddWithValue("@first_name", first_nameBox.Text.Trim());
                 cmd.Parameters.AddWithValue("@last_name", last_nameBox.Text.Trim());
@@ -79,6 +79,7 @@ namespace FilmyProject
                 cmd.Parameters.AddWithValue("@description", descriptionBox.Text.Trim());
                 cmd.Parameters.AddWithValue("@image_path", "images\\main_content\\critic_default.png");
                 cmd.Parameters.AddWithValue("@password", passwordBox.Text.Trim());
+                cmd.Parameters.AddWithValue("@pending", "processing");
                 cmd.ExecuteNonQuery();
                 con.Close();
             }

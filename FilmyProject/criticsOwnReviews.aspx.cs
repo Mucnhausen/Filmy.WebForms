@@ -41,32 +41,59 @@ namespace FilmyProject
 
         protected void addBtn_Click(object sender, EventArgs e)
         {
-            addNewReview();
-            clearForm();
-            Response.Write("<script>alert('Review added successfully.');</script>");
-            GridView1.DataBind();
+            if (ifCriticIsApproved())
+            {
+                    if (ifCriticIsApproved())
+                    {
+                        addNewReview();
+                        clearForm();
+                        Response.Write("<script>alert('Review added successfully.');</script>");
+                        GridView1.DataBind();
+                    } else { Response.Write("<script>alert('Review ID does not match any existing review.');</script>"); }
+            } else { Response.Write("<script>alert('You have not been approved the Filmy Team yet. Please wait patienly.');</script>"); }
         }
 
         protected void updateBtn_Click(object sender, EventArgs e)
         {
-            if (ifReviewExists())
+            if (ifCriticIsApproved())
             {
-                updateReview();
-                GridView1.DataBind();
-                Response.Write("<script>alert('Review updated successfully.');</script>");
-            } else { Response.Write("<script>alert('Review ID does not match any existing review.');</script>"); }
+                if (ifReviewExists())
+                {
+                    updateReview();
+                    GridView1.DataBind();
+                    Response.Write("<script>alert('Review updated successfully.');</script>");
+                } else { Response.Write("<script>alert('Review ID does not match any existing review.');</script>"); }
+            } else { Response.Write("<script>alert('You have not been approved the Filmy Team yet. Please wait patienly.');</script>"); }
         }
 
         protected void deleteBtn_Click(object sender, EventArgs e)
         {
-            if (ifReviewExists())
+            if (ifCriticIsApproved())
             {
-                deleteReview();
-                GridView1.DataBind();
-                clearForm();
-                Response.Write("<script>alert('Review deleted successfully.');</script>");
+                    if (ifReviewExists())
+                {
+                    deleteReview();
+                    GridView1.DataBind();
+                    clearForm();
+                    Response.Write("<script>alert('Review deleted successfully.');</script>");
+                } else { Response.Write("<script>alert('Review ID does not match any existing review.');</script>"); }
+            } else { Response.Write("<script>alert('You have not been approved the Filmy Team yet. Please wait patienly.');</script>"); }
+        }
+        bool ifCriticIsApproved()
+        {
+            try
+            {
+                using (SqlCommand sqlCommand = new SqlCommand("SELECT COUNT(*) from critics where username = @username AND pending = 'active' ", con))
+                {
+                    con.Open();
+                    sqlCommand.Parameters.AddWithValue("@username", Session["username"]);
+                    int userCount = (int)sqlCommand.ExecuteScalar();
+                    con.Close();
+                    if (userCount > 0) { return true; } else { return false; }
+                }
+
             }
-            else { Response.Write("<script>alert('Review ID does not match any existing review.');</script>"); }
+            catch (Exception ex) { Response.Write("<script>alert('An error occured. Try later \n " + ex.Message + " ');</script>"); return false; }
         }
         bool ifReviewExists()
         {
