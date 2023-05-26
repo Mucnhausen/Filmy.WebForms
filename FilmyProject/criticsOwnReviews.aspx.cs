@@ -72,10 +72,11 @@ namespace FilmyProject
         {
             try
             {
-                using (SqlCommand sqlCommand = new SqlCommand("SELECT COUNT(*) from reviews where Id = @id", con))
+                using (SqlCommand sqlCommand = new SqlCommand("SELECT COUNT(*) from reviews where Id = @id AND critic_username = @critic_username", con))
                 {
                     con.Open();
                     sqlCommand.Parameters.AddWithValue("@id", idBox.Text.Trim());
+                    sqlCommand.Parameters.AddWithValue("@critic_username", Session["username"]);
                     int userCount = (int)sqlCommand.ExecuteScalar();
                     con.Close();
                     if (userCount > 0) { return true; } else { return false; }
@@ -90,8 +91,9 @@ namespace FilmyProject
             {
                 string movie_id = "";
                 con.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM reviews WHERE Id=@id", con);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM reviews WHERE Id=@id AND critic_username = @critic_username", con);
                 cmd.Parameters.AddWithValue("@id", idBox.Text.Trim());
+                cmd.Parameters.AddWithValue("@critic_username", Session["username"]);
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
@@ -173,11 +175,12 @@ namespace FilmyProject
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE reviews SET movie_id=@movie_id, review_text=@review_text, rating=@rating WHERE Id=@id", con);
+                SqlCommand cmd = new SqlCommand("UPDATE reviews SET movie_id=@movie_id, review_text=@review_text, rating=@rating WHERE Id=@id AND critic_username = @critic_username", con);
                 cmd.Parameters.AddWithValue("@id", idBox.Text.Trim());
                 cmd.Parameters.AddWithValue("@movie_id", getMovieIDByTitle());
                 cmd.Parameters.AddWithValue("@review_text", reviewBox.Text.Trim());
                 cmd.Parameters.AddWithValue("@rating", ratingBox.Text.Trim());
+                cmd.Parameters.AddWithValue("@critic_username", Session["username"]);
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
@@ -191,8 +194,9 @@ namespace FilmyProject
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("DELETE FROM reviews WHERE Id = @id", con);
+                SqlCommand cmd = new SqlCommand("DELETE FROM reviews WHERE Id = @id AND critic_username = @critic_username", con);
                 cmd.Parameters.AddWithValue("@id", idBox.Text.Trim());
+                cmd.Parameters.AddWithValue("@critic_username", Session["username"]);
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
