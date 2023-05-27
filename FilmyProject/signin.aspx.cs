@@ -16,7 +16,6 @@ namespace FilmyProject
 {
     public partial class signin : System.Web.UI.Page
     {
-        //string strcon = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
 
         protected void Page_Load(object sender, EventArgs e)
@@ -30,17 +29,17 @@ namespace FilmyProject
 
         protected void submitBtn_Click(object sender, EventArgs e)
         {
-            if (ifCriticExists())
-            {
-                Response.Write("<script>alert('The username is already taken!');</script>");
-            }
-            else
-            {
-                addNewCritic();
-                Response.Write("<script>alert('Sign Up Successful. Go to User Login to Login');</script>");
-                sendSuccessSignInEmail();
-                clearForm();
-            }
+            //if (ifCriticExists())
+            //{
+            //    Response.Write("<script>alert('The username is already taken!');</script>");
+            //}
+            //else
+            //{
+            //    addNewCritic();
+            //    Response.Write("<script>alert('Sign Up Successful. Go to User Login to Login');</script>");
+            //    sendSuccessSignInEmail();
+            //    clearForm();
+            //}
         }
 
         bool ifCriticExists()

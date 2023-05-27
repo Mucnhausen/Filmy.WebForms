@@ -179,6 +179,8 @@
     <Content Include="images\movies\starwars_4.jpg" />
     <Content Include="images\movies\starwars_5.jpg" />
     <Content Include="images\movies\starwars_6.jpg" />
+    <Content Include="js\signInValidator.js" />
+    <Content Include="js\test.js" />
     <Content Include="login.aspx" />
     <Content Include="movies.aspx" />
     <Content Include="moviesManagment.aspx" />
@@ -333,9 +335,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="js\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
