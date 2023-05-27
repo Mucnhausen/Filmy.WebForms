@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
+using System.IO;
 
 namespace FilmyProject
 {
@@ -53,6 +54,65 @@ namespace FilmyProject
             if (ifCriticExists())
             {
                 getCriticByUsername();
+            }
+        }
+        protected void UploadBtn_Click(object sender, EventArgs e)
+        {
+            if (FileUpload1.HasFile)
+                if (ifCriticExists())
+                {
+                    string fileType = Path.GetFileName(FileUpload1.PostedFile.ContentType);
+                    string previousPath = getPreviousPicturePath();
+                    if (Path.GetExtension(previousPath) != fileType)
+                    {
+                        File.Delete(Server.MapPath("\\") + previousPath);
+                    }
+                    string fileName = usernameBox.Text.Trim() + "." + Path.GetFileName(FileUpload1.PostedFile.ContentType);
+                    string filePath = Server.MapPath("~/images/critics/") + fileName;
+                    FileUpload1.SaveAs(filePath);
+                    updateCriticImage("images/critics/" + fileName);
+                    DataBind();
+                    Response.Write("<script>alert('Photo uploaded successfully');</script>");
+                } else { Response.Write("<script>alert('Username does not exist.');</script>"); }
+        }
+        void updateCriticImage(String file_path)
+        {
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("UPDATE critics SET image_path=@image_path WHERE username = @username", con);
+                cmd.Parameters.AddWithValue("@image_path", file_path);
+                cmd.Parameters.AddWithValue("@username", usernameBox.Text.Trim());
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
+        }
+        String getPreviousPicturePath()
+        {
+            try
+            {
+                String path = null;
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM critics WHERE username=@username", con);
+                cmd.Parameters.AddWithValue("@username", usernameBox.Text.Trim());
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    path = reader["image_path"].ToString();
+                }
+                reader.Close();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return path;
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>"); return null;
             }
         }
 

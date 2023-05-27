@@ -10,11 +10,14 @@ using System.Web.UI.WebControls;
 
 namespace FilmyProject
 {
+
     public partial class moviesManagment : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
+            // ClientScript.RegisterStartupScript(this.GetType(), "toastr_custom", "toastr.info('Custom message', 'Custom Title', { timeOut: 5000 , progressBar: true , newestOnTop: true });", true);
+
             if (Session["role"].ToString() == "visitor" || Session["role"].ToString() == "critic")
             {
                 Response.Write("You have no rights to view the content of that page");

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Filmy.Master" AutoEventWireup="true" CodeBehind="criticsManagment.aspx.cs" Inherits="FilmyProject.criticsManagment" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Filmy.Master" AutoEventWireup="true" CodeBehind="criticsManagment.aspx.cs" Inherits="FilmyProject.criticsManagment" UnobtrusiveValidationMode="None"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/criticsManagment.css" rel="stylesheet" />
 </asp:Content>
@@ -35,6 +35,16 @@
                     <div class="row">
                         <asp:TextBox ID="pendingBox" runat="server" class="input2" placeholder="Pending"></asp:TextBox>
                     </div>
+                    <div class="row buttons ">
+                        <asp:FileUpload ID="FileUpload1" runat="server" accept=".png,.jpg,.jpeg" style="padding-top: 6px; background-color: white;" title="Recommended resolution: 360x512 "/>
+                        <asp:RegularExpressionValidator ID="regexValidator" runat="server"
+                                 ControlToValidate="FileUpload1"
+                                 ErrorMessage="Only images are allowed" 
+                                 ValidationExpression="(.*?)\.(jpg|jpeg|png|JPG|JPEG|PNG)$"
+                                 style="display: none" >
+                        </asp:RegularExpressionValidator>
+                        <asp:Button ID="UploadBtn" runat="server" class="upload input5 " Text="Upload" OnClick="UploadBtn_Click"/>
+                    </div>
                     <div class="row textarea">
                         <asp:TextBox ID="descriptionBox" runat="server" TextMode="MultiLine" Rows="4" class="input2" placeholder="Tell about yourself"></asp:TextBox>
                     </div>
@@ -42,6 +52,7 @@
                         <asp:Button ID="updateBtn" runat="server" class="input2 update" Text="Update" OnClick="updateBtn_Click"/>
                         <asp:Button ID="deleteBtn" runat="server" class="input2 delete" Text="Delete" OnClick="deleteBtn_Click"/>
                     </div>
+
                 </div>
             </div>
             <div class="main-table-wrapper">

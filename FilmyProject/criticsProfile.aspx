@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Filmy.Master" AutoEventWireup="true" CodeBehind="criticsProfile.aspx.cs" Inherits="FilmyProject.criticsProfile" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Filmy.Master" AutoEventWireup="true" CodeBehind="criticsProfile.aspx.cs" Inherits="FilmyProject.criticsProfile" UnobtrusiveValidationMode="None"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/criticsProfile.css" rel="stylesheet" />
 </asp:Content>
@@ -36,8 +36,23 @@
                         <asp:TextBox ID="descriptionBox" runat="server" TextMode="MultiLine" Rows="4" class="input2" placeholder="Tell about yourself"></asp:TextBox>
                     </div>
                     <div class="row buttons">
-                        <asp:Button ID="updateBtn" runat="server" class="input2 update" Text="Update"/>
+                        <asp:Button ID="updateBtn" runat="server" class="input2 update" Text="Update" OnClick="updateBtn_Click"/>
                     </div>
+                </div>
+            </div>
+            <div class="main-picture bottom">
+                <div class="image-wrapper">
+                    <asp:Image ID="Image1" runat="server" ImageUrl="images\main_content\critic_default.png" Width="360px" Height="512px" class="image"/>
+                </div>
+                <div class="row buttons ">
+                    <asp:FileUpload ID="FileUpload1" runat="server" accept=".png,.jpg,.jpeg" style="padding-top: 6px;" class=""/>
+                    <asp:RegularExpressionValidator ID="regexValidator" runat="server"
+                             ControlToValidate="FileUpload1"
+                             ErrorMessage="Only images are allowed" 
+                             ValidationExpression="(.*?)\.(jpg|jpeg|png|JPG|JPEG|PNG)$"
+                             style="display: none" >
+                    </asp:RegularExpressionValidator>
+                    <asp:Button ID="UploadBtn" runat="server" class="upload input5 " Text="Upload" OnClick="UploadBtn_Click"/>
                 </div>
             </div>
         </div>
