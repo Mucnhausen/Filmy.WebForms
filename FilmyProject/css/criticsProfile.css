@@ -109,6 +109,12 @@ textarea {
     cursor: pointer;
 }
 
+.savePassword {
+    width: 30% !important;
+    background-color: #327da8;
+    border: none;
+}
+
 .buttons {
     gap: 5px;
 }

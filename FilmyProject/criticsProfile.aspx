@@ -24,6 +24,10 @@
                         <asp:TextBox ID="usernameBox" runat="server" class="input2" placeholder="Username"></asp:TextBox>
                     </div>
                     <div class="row">
+                        <asp:TextBox ID="passwordBox" runat="server" TextMode="Password" class="input3" placeholder="Password"></asp:TextBox>
+                        <asp:Button ID="savePasswordBtn" runat="server" class="savePassword margin-left" Text="Save" OnClick="savePasswordBtn_Click"/>
+                    </div>
+                    <div class="row">
                         <asp:TextBox ID="birth_dateBox" runat="server" TextMode="Date" class="input2 date"></asp:TextBox>
                     </div>
                     <div class="row">

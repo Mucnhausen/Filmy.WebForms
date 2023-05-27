@@ -53,6 +53,12 @@ namespace FilmyProject
             FillCriticData();
             Response.Write("<script>alert('Info updated successfully');</script>");
         }
+        protected void savePasswordBtn_Click(object sender, EventArgs e)
+        {
+            updateCriticPassword();
+            FillCriticData();
+            Response.Write("<script>alert('Password updated successfully');</script>");
+        }
 
         void updateCriticImage(String file_path)
         {
@@ -61,6 +67,22 @@ namespace FilmyProject
                 con.Open();
                 SqlCommand cmd = new SqlCommand("UPDATE critics SET image_path=@image_path WHERE username = @username", con);
                 cmd.Parameters.AddWithValue("@image_path", file_path);
+                cmd.Parameters.AddWithValue("@username", Session["username"]);
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
+        }
+        void updateCriticPassword()
+        {
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("UPDATE critics SET password=@password WHERE username = @username", con);
+                cmd.Parameters.AddWithValue("@password", passwordBox.Text.Trim());
                 cmd.Parameters.AddWithValue("@username", Session["username"]);
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -113,6 +135,7 @@ namespace FilmyProject
                     birth_dateBox.Text = DateTime.Parse(reader["birth_date"].ToString()).ToString("yyyy-MM-dd");
                     countryBox.Text = reader["country"].ToString();
                     phoneBox.Text = reader["tel"].ToString();
+                    passwordBox.Attributes["value"] = reader["password"].ToString();
                     descriptionBox.Text = reader["description"].ToString();
                     
                     Image1.ImageUrl = reader["image_path"].ToString();
