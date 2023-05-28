@@ -22,13 +22,18 @@ namespace FilmyProject
             }
         }
 
+        void displayToast(String type, String title, String message)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "toastr_custom", "toastr." + type + "('" + message + "', '" + title + "', { timeOut: 5000, progressBar: true, preventDuplicates: true, extendedTimeOut: 2000 });", true);
+        }
+
         protected void findBtn_Click(object sender, EventArgs e)
         {
             if (ifReviewExists())
             {
                 getReviewById();
             }
-            else { Response.Write("<script>alert('Review ID does not match any existing review.');</script>"); }
+            else { displayToast("error", "Review ID", "Review ID does not match any existing review."); }
         }
 
         protected void updateBtn_Click(object sender, EventArgs e)
@@ -39,7 +44,7 @@ namespace FilmyProject
                 GridView1.DataBind();
                 Response.Write("<script>alert('Review updated successfully.');</script>");
             }
-            else { Response.Write("<script>alert('Review ID does not match any existing review.');</script>"); }
+            else { displayToast("error", "Review ID", "Review ID does not match any existing review."); }
         }
 
         protected void deleteBtn_Click(object sender, EventArgs e)
@@ -51,7 +56,7 @@ namespace FilmyProject
                 clearForm();
                 Response.Write("<script>alert('Review deleted successfully.');</script>");
             }
-            else { Response.Write("<script>alert('Review ID does not match any existing review.');</script>"); }
+            else { displayToast("error", "Review ID", "Review ID does not match any existing review."); }
         }
 
         bool ifReviewExists()

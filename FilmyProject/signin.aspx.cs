@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
 using System.Web;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -26,20 +27,24 @@ namespace FilmyProject
                 Response.End();
             }
         }
+        void displayToast(String type, String title, String message)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "toastr_custom", "toastr." + type + "('" + message + "', '" + title + "', { timeOut: 5000, progressBar: true, preventDuplicates: true, extendedTimeOut: 2000 });", true);
+        }
 
         protected void submitBtn_Click(object sender, EventArgs e)
         {
-            //if (ifCriticExists())
-            //{
-            //    Response.Write("<script>alert('The username is already taken!');</script>");
-            //}
-            //else
-            //{
-            //    addNewCritic();
-            //    Response.Write("<script>alert('Sign Up Successful. Go to User Login to Login');</script>");
-            //    sendSuccessSignInEmail();
-            //    clearForm();
-            //}
+            if (ifCriticExists())
+            {
+                displayToast("error", "Username", "This username is already taken.");
+            }
+            else
+            {
+                addNewCritic();
+                displayToast("success" , "SIGN IN", "You are successfully signed in.");
+                sendSuccessSignInEmail();
+                clearForm();
+            }
         }
 
         bool ifCriticExists()

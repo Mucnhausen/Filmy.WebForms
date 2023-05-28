@@ -27,6 +27,10 @@ namespace FilmyProject
                 Response.End();
             }
         }
+        void displayToast(String type, String title, String message)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "toastr_custom", "toastr." + type + "('" + message + "', '" + title + "', { timeOut: 5000, progressBar: true, preventDuplicates: true, extendedTimeOut: 2000 });", true);
+        }
 
         protected void UploadBtn_Click(object sender, EventArgs e)
         {
@@ -43,7 +47,7 @@ namespace FilmyProject
                 FileUpload1.SaveAs(filePath);
                 updateCriticImage("images/critics/" + fileName);
                 Image1.ImageUrl = "images/critics/" + fileName;
-                Response.Write("<script>alert('Photo uploaded successfully');</script>");
+                displayToast("success", "Picture", "Critic picture updated successfully.");
             }
         }
 
@@ -51,13 +55,13 @@ namespace FilmyProject
         {
             updateCritic();
             FillCriticData();
-            Response.Write("<script>alert('Info updated successfully');</script>");
+            displayToast("success", "Info", "Info updated successfully.");
         }
         protected void savePasswordBtn_Click(object sender, EventArgs e)
         {
             updateCriticPassword();
             FillCriticData();
-            Response.Write("<script>alert('Password updated successfully');</script>");
+            displayToast("success", "Password", "Password updated successfully.");
         }
 
         void updateCriticImage(String file_path)

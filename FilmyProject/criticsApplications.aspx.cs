@@ -21,20 +21,23 @@ namespace FilmyProject
                 Response.End();
             }
         }
-
+        void displayToast(String type, String title, String message)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "toastr_custom", "toastr." + type + "('" + message + "', '" + title + "', { timeOut: 5000, progressBar: true, preventDuplicates: true, extendedTimeOut: 2000 });", true);
+        }
         protected void findBtn_Click(object sender, EventArgs e)
         {
             if (ifCriticExists())
             {
                 getCriticByUsername();
-            } else { Response.Write("<script>alert('Username does not match any registrated critic');</script>"); }
+            } else { displayToast("error", "Username", "Username does not match any registrated critic."); }
         }
 
         protected void addBtn_Click(object sender, EventArgs e)
         {
             acceptCritic();
             GridView1.DataBind();
-            Response.Write("<script>alert('Critic accepted');</script>");
+            displayToast("success", "Critic", "Critic accepted successfully.");
             clearForm();
         }
 
@@ -42,7 +45,7 @@ namespace FilmyProject
         {
             declineCritic();
             GridView1.DataBind();
-            Response.Write("<script>alert('Critic declined');</script>");
+            displayToast("warning", "Critic", "Critic declined successfully.");
             clearForm();
         }
         bool ifCriticExists()

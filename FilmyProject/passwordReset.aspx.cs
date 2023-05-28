@@ -24,15 +24,20 @@ namespace FilmyProject
                 Response.End();
             }
         }
+        void displayToast(String type, String title, String message)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "toastr_custom", "toastr." + type + "('" + message + "', '" + title + "', { timeOut: 5000, progressBar: true, preventDuplicates: true, extendedTimeOut: 2000 });", true);
+        }
 
         protected void submitBtn_Click(object sender, EventArgs e)
         {
             if (ifCriticExists())
             {
                 sendPasswordRecovery(getCriticByUsername());
+                displayToast("success", "PASSWORD REQUEST", "Request was sent successfully.");
                 Response.Redirect("login.aspx");
             } else {
-                Response.Write("<script>alert('Username does not match any registrated user.');</script>");
+                displayToast("error", "Username", "Username does not match any registrated user.");
             }
             usernameBox.Text = "";
             

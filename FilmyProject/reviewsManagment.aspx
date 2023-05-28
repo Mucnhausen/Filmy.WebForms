@@ -18,6 +18,7 @@
             
         });
     </script>
+    <script src="js/reviewsManagementValidator.js"></script>
 </asp:Content>
 
 
@@ -30,23 +31,23 @@
                 </div>
                 <div class="form" action="">
                     <div class="row">
-                        <asp:TextBox ID="idBox" runat="server" class="input3" placeholder="Review ID"></asp:TextBox>
+                        <asp:TextBox ID="idBox" runat="server" class="input3" placeholder="Review ID" ClientIDMode="Static"></asp:TextBox>
                         <asp:Button ID="findBtn" runat="server" class="find margin-left" Text="Find" OnClick="findBtn_Click"/>
                     </div>
                     <div class="row">
                         <asp:SqlDataSource ID="DropDownList_SqlDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [movie_name] FROM [movies]"></asp:SqlDataSource>
-                        <asp:DropDownList ID="DropDownList1"  runat="server" class="input2 dropdownlist" DataSourceID="DropDownList_SqlDataSource" DataTextField="movie_name" DataValueField="movie_name" AppendDataBoundItems="true">
+                        <asp:DropDownList ID="DropDownList1"  runat="server" class="input2 dropdownlist" DataSourceID="DropDownList_SqlDataSource" DataTextField="movie_name" DataValueField="movie_name" AppendDataBoundItems="true" ClientIDMode="Static">
                             <asp:ListItem Value="-1">Movie Title</asp:ListItem>
                         </asp:DropDownList>
                     </div>
                     <div class="row">
-                        <asp:TextBox ID="ratingBox" runat="server" TextMode="Number" class="input2" placeholder="Rating (1 - min, 10 - max)"></asp:TextBox>
+                        <asp:TextBox ID="ratingBox" runat="server" TextMode="Number" class="input2" min="1" max="10" placeholder="Rating (1 - min, 10 - max)" ClientIDMode="Static"></asp:TextBox>
                     </div>
                     <div class="row textarea">
-                        <asp:TextBox ID="reviewBox" runat="server" TextMode="MultiLine" Rows="4" class="input2" placeholder="Review text"></asp:TextBox>
+                        <asp:TextBox ID="reviewBox" runat="server" TextMode="MultiLine" Rows="4" class="input2" placeholder="Review text" ClientIDMode="Static"></asp:TextBox>
                     </div>
                     <div class="row buttons">
-                        <asp:Button ID="updateBtn" runat="server" class="input2 update" Text="Update" OnClick="updateBtn_Click"/>
+                        <asp:Button ID="updateBtn" runat="server" class="input2 update" Text="Update" OnClick="updateBtn_Click" OnClientClick="return validateForm();"/>
                         <asp:Button ID="deleteBtn" runat="server" class="input2 delete" Text="Delete" OnClick="deleteBtn_Click"/>
                     </div>
                 </div>

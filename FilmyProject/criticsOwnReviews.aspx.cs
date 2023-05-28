@@ -30,13 +30,17 @@ namespace FilmyProject
             //string.Format("Number: {0:N}", 157);
 
         }
+        void displayToast(String type, String title, String message)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "toastr_custom", "toastr." + type + "('" + message + "', '" + title + "', { timeOut: 5000, progressBar: true, preventDuplicates: true, extendedTimeOut: 2000 });", true);
+        }
         protected void findBtn_Click(object sender, EventArgs e)
         {
             if (ifReviewExists())
             {
                 getReviewById();
             }
-            else { Response.Write("<script>alert('Review ID does not match any existing review.');</script>"); }
+            else { displayToast("error", "Review ID", "Review ID does not match any review."); }
         }
 
         protected void addBtn_Click(object sender, EventArgs e)
@@ -47,10 +51,10 @@ namespace FilmyProject
                     {
                         addNewReview();
                         clearForm();
-                        Response.Write("<script>alert('Review added successfully.');</script>");
-                        GridView1.DataBind();
-                    } else { Response.Write("<script>alert('Review ID does not match any existing review.');</script>"); }
-            } else { Response.Write("<script>alert('You have not been approved the Filmy Team yet. Please wait patienly.');</script>"); }
+                    displayToast("success", "Review", "Review updated successfully.");
+                    GridView1.DataBind();
+                    } else { displayToast("error", "Review ID", "Review ID does not match any review."); }
+            } else { displayToast("error", "Approval", "You have not been approved yet to post reviews by Filmy Team. Please, wait."); }
         }
 
         protected void updateBtn_Click(object sender, EventArgs e)
@@ -61,9 +65,9 @@ namespace FilmyProject
                 {
                     updateReview();
                     GridView1.DataBind();
-                    Response.Write("<script>alert('Review updated successfully.');</script>");
-                } else { Response.Write("<script>alert('Review ID does not match any existing review.');</script>"); }
-            } else { Response.Write("<script>alert('You have not been approved the Filmy Team yet. Please wait patienly.');</script>"); }
+                    displayToast("success", "Review", "Review updated successfully.");
+                } else { displayToast("error", "Review ID", "Review ID does not match any review."); }
+            } else { displayToast("error", "Approval", "You have not been approved yet to post reviews by Filmy Team. Please, wait."); }
         }
 
         protected void deleteBtn_Click(object sender, EventArgs e)
@@ -75,9 +79,9 @@ namespace FilmyProject
                     deleteReview();
                     GridView1.DataBind();
                     clearForm();
-                    Response.Write("<script>alert('Review deleted successfully.');</script>");
-                } else { Response.Write("<script>alert('Review ID does not match any existing review.');</script>"); }
-            } else { Response.Write("<script>alert('You have not been approved the Filmy Team yet. Please wait patienly.');</script>"); }
+                    displayToast("warning", "Review", "Review deleted successfully.");
+                } else { displayToast("error", "Review ID", "Review ID does not match any review."); }
+            } else { displayToast("error", "Approval", "You have not been approved yet to post reviews by Filmy Team. Please, wait."); }
         }
         bool ifCriticIsApproved()
         {

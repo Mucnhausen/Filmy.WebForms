@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Filmy.Master" AutoEventWireup="true" CodeBehind="moviesManagment.aspx.cs" Inherits="FilmyProject.moviesManagment" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/criticsManagment.css" rel="stylesheet" />
+    <script src="js/moviesManagementValidator.js"></script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -12,36 +13,36 @@
                 </div>
                 <div class="form" action="">
                     <div class="row">
-                        <asp:TextBox ID="titleBox" runat="server" class="input2" placeholder="Title"></asp:TextBox>
+                        <asp:TextBox ID="titleBox" runat="server" class="input2" placeholder="Title" ClientIDMode="Static"></asp:TextBox>
                     </div>
                     <div class="row">
-                        <asp:TextBox ID="idBox" runat="server" class="input3" placeholder="ID"></asp:TextBox>
+                        <asp:TextBox ID="idBox" runat="server" class="input3" placeholder="ID" ClientIDMode="Static" required="required"></asp:TextBox>
                         <asp:Button ID="findBtn" runat="server" class="find margin-left" Text="Find" OnClick="findBtn_Click"/>
                     </div>
                     <div class="row">
-                        <asp:TextBox ID="dateBox" runat="server" TextMode="Date" class="input2 date" title="Publishing date"></asp:TextBox>
+                        <asp:TextBox ID="dateBox" runat="server" TextMode="Date" class="input2 date" title="Publishing date" ClientIDMode="Static"></asp:TextBox>
                     </div>
                     <div class="row">
-                        <asp:TextBox ID="budgetBox" runat="server" class="input2" placeholder="Budget"></asp:TextBox>
+                        <asp:TextBox ID="budgetBox" runat="server" class="input2" placeholder="Budget" ClientIDMode="Static"></asp:TextBox>
                     </div>
                     <div class="row">
-                        <asp:TextBox ID="ratingBox" runat="server" class="input2" placeholder="Rating"></asp:TextBox>
+                        <asp:TextBox ID="ratingBox" runat="server" TextMode="Number" class="input2" placeholder="Rating" min="1" max="10" ClientIDMode="Static"></asp:TextBox>
                     </div>
                     <div class="row textarea">
-                        <asp:TextBox ID="genresBox" runat="server" TextMode="MultiLine" Rows="4" class="input2" placeholder="Genres (',' - separator)"></asp:TextBox>
+                        <asp:TextBox ID="genresBox" runat="server" TextMode="MultiLine" Rows="4" class="input2" placeholder="Genres (',' - separator)" ClientIDMode="Static"></asp:TextBox>
                     </div>
                     <div class="row textarea">
-                        <asp:TextBox ID="actorsBox" runat="server" TextMode="MultiLine" Rows="4" class="input2" placeholder="Actors (',' - separator)"></asp:TextBox>
+                        <asp:TextBox ID="actorsBox" runat="server" TextMode="MultiLine" Rows="4" class="input2" placeholder="Actors (',' - separator)" ClientIDMode="Static"></asp:TextBox>
                     </div>
                     <div class="row textarea">
-                        <asp:TextBox ID="producersBox" runat="server" TextMode="MultiLine" Rows="4" class="input2" placeholder="Producers (',' - separator)"></asp:TextBox>
+                        <asp:TextBox ID="producersBox" runat="server" TextMode="MultiLine" Rows="4" class="input2" placeholder="Producers (',' - separator)" ClientIDMode="Static"></asp:TextBox>
                     </div>
                     <div class="row textarea">
-                        <asp:TextBox ID="descriptionBox" runat="server" TextMode="MultiLine" Rows="4" class="input2" placeholder="Tell about yourself"></asp:TextBox>
+                        <asp:TextBox ID="descriptionBox" runat="server" TextMode="MultiLine" Rows="4" class="input2" placeholder="Tell about yourself" ClientIDMode="Static"></asp:TextBox>
                     </div>
                     <div class="row buttons">
-                        <asp:Button ID="addBtn" runat="server" class="input2 add" Text="Add" OnClick="addBtn_Click"/>
-                        <asp:Button ID="updateBtn" runat="server" class="input2 update" Text="Update" OnClick="updateBtn_Click"/>
+                        <asp:Button ID="addBtn" runat="server" class="input2 add" Text="Add" OnClick="addBtn_Click" OnClientClick="return validateForm();"/>
+                        <asp:Button ID="updateBtn" runat="server" class="input2 update" Text="Update" OnClick="updateBtn_Click" OnClientClick="return validateForm();"/>
                         <asp:Button ID="deleteBtn" runat="server" class="input2 delete" Text="Delete" OnClick="deleteBtn_Click"/>
                     </div>
                 </div>

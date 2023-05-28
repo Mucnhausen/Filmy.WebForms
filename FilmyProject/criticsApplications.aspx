@@ -31,7 +31,7 @@
                         <asp:TextBox ID="last_nameBox" runat="server" class="input1 margin-left readonly" placeholder="Last Name" ReadOnly></asp:TextBox>
                     </div>
                     <div class="row">
-                        <asp:TextBox ID="usernameBox" runat="server" class="input3" placeholder="Username"></asp:TextBox>
+                        <asp:TextBox ID="usernameBox" runat="server" class="input3" placeholder="Username"  required="required"></asp:TextBox>
                         <asp:Button ID="findBtn" runat="server" class="find margin-left" Text="Find" OnClick="findBtn_Click"/>
                     </div>
                     <div class="row">

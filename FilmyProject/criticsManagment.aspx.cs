@@ -23,12 +23,16 @@ namespace FilmyProject
             }
             DataBind();
         }
+        void displayToast(String type, String title, String message)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "toastr_custom", "toastr." + type + "('" + message + "', '" + title + "', { timeOut: 5000, progressBar: true, preventDuplicates: true, extendedTimeOut: 2000 });", true);
+        }
         protected void updateBtn_Click(object sender, EventArgs e)
         {
             if (ifCriticExists())
             {
                 updateCritic();
-                Response.Write("<script>alert('Critic updated successfully.');</script>");
+                displayToast("success", "Critic", "Critic updated successfully.");
                 DataBind();
             }
             //SqlDataSource1.SelectCommand = "SELECT r.ID AS review_id, m.title AS movie_title, m.description AS movie_description " +
@@ -44,7 +48,7 @@ namespace FilmyProject
             if (ifCriticExists())
             {
                 deleteCritic();
-                Response.Write("<script>alert('Critic deleted successfully.');</script>");
+                displayToast("warning", "Critic", "Critic deleted successfully.");
                 DataBind();
             }
         }
@@ -72,8 +76,8 @@ namespace FilmyProject
                     FileUpload1.SaveAs(filePath);
                     updateCriticImage("images/critics/" + fileName);
                     DataBind();
-                    Response.Write("<script>alert('Photo uploaded successfully');</script>");
-                } else { Response.Write("<script>alert('Username does not exist.');</script>"); }
+                    displayToast("success", "Picture", "Critic picture updated successfully.");
+                } else { displayToast("error", "Username", "Username does not match any registrated critic."); }
         }
         void updateCriticImage(String file_path)
         {

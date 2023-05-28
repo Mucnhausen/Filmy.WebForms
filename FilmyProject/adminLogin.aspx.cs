@@ -22,6 +22,10 @@ namespace FilmyProject
                 Response.End();
             }
         }
+        void displayToast(String type, String title, String message)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "toastr_custom", "toastr." + type + "('" + message + "', '" + title + "', { timeOut: 5000, progressBar: true, preventDuplicates: true, extendedTimeOut: 2000 });", true);
+        }
 
         protected void submitBtn_Click(object sender, EventArgs e)
         {
@@ -29,7 +33,7 @@ namespace FilmyProject
             {
                 Session["username"] = usernameBox.Text.Trim(); Session["role"] = "admin";
                 Response.Redirect("index.aspx");
-            } else { Response.Write("<script>alert('Username or password does not match any registrated user.');</script>"); }
+            } else { displayToast("error", "Username or password", "Username or password does not match any registrated critic."); }
         }
         bool ifAdminCredentialsCorrect()
         {

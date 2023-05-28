@@ -25,6 +25,10 @@ namespace FilmyProject
             }
             DataBind();
         }
+        void displayToast(String type, String title, String message)
+        {
+            ClientScript.RegisterStartupScript(this.GetType(), "toastr_custom", "toastr." + type + "('" + message + "', '" + title + "', { timeOut: 5000, progressBar: true, preventDuplicates: true, extendedTimeOut: 2000 });", true);
+        }
 
         protected void findBtn_Click(object sender, EventArgs e)
         {
@@ -32,7 +36,7 @@ namespace FilmyProject
             {
                 getMovieById();
             } else {
-                Response.Write("<script>alert('ID does not match any movie');</script>");
+                displayToast("error", "Movie ID", "Movie ID does not match any movie.");
             }
         }
 
@@ -40,13 +44,13 @@ namespace FilmyProject
         {
             if (ifTitleExists())
             {
-                Response.Write("<script>alert('Movie title already exists');</script>");
+                displayToast("error", "Movie Title", "Movie Title already exists.");
             }
             else
             {
                 addNewMovie();
                 clearForm();
-                Response.Write("<script>alert('Movie added successfully.');</script>");
+                displayToast("successfull", "Movie ID", "Movie added successfully.");
                 DataBind();
                 
             }
@@ -56,17 +60,12 @@ namespace FilmyProject
         {
             if (ifMovieExists())
             {
-                if (ifTitleExists())
-                {
-                    Response.Write("<script>alert('Movie title already exists');</script>");
-                } else {
-                    updateMovie();
-                    Response.Write("<script>alert('Movie updated successfully.');</script>");
-                    DataBind();
-                }
-                
+                updateMovie();
+                displayToast("success", "Movie ID", "Movie updated successfully.");
+                DataBind();
+
             } else {
-                Response.Write("<script>alert('ID does not match any movie');</script>");
+                displayToast("error", "Movie ID", "Movie ID does not match any movie.");
             }
         }
 
@@ -76,12 +75,12 @@ namespace FilmyProject
             {
                 deleteMovie();
                 clearForm();
-                Response.Write("<script>alert('Movie deleted successfully.');</script>");
+                displayToast("warning", "Movie ID", "Movie deleted successfully.");
                 DataBind();
             }
             else
             {
-                Response.Write("<script>alert('ID does not match any movie');</script>");
+                displayToast("error", "Movie ID", "Movie ID does not match any movie.");
             }
         }
         void getMovieById()
@@ -218,6 +217,7 @@ namespace FilmyProject
             idBox.Text = "";
             dateBox.Text = "";
             budgetBox.Text = "";
+            ratingBox.Text = "";
             genresBox.Text = "";
             actorsBox.Text = "";
             producersBox.Text = "";

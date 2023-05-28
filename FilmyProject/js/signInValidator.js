@@ -1,154 +1,311 @@
-﻿function validate_form() {
-    var submitOk = true;
+﻿function displayError(title, message) {
+    toastr.error(message, title, { timeOut: 5000, progressBar: true, preventDuplicates: true, extendedTimeOut: 2000, newestOnTop: false });
 
-    var username = document.getElementById("<%= usernameBox.ClientID %>").value;
+}
 
-    var fname = document.getElementById("<%= first_nameBox.ClientID %>").value;
-    var lname = document.getElementById("<%= last_nameBox.ClientID %>").value;
+function validateForm() {
+    var submitForm = true;
 
-    var tel = document.getElementById("<%= phoneBox.ClientID %>").value;
-    var country = document.getElementById("<%= countryBox.ClientID %>").value;
+    var email = document.getElementById('emailBox').value;
+    var password = document.getElementById('passwordBox').value;
+    var firstName = document.getElementById('first_nameBox').value;
+    var lastName = document.getElementById('last_nameBox').value;
+    var username = document.getElementById('usernameBox').value;
+    var birthDate = document.getElementById('birth_dateBox').value;
+    var country = document.getElementById('countryBox').value;
+    var phone = document.getElementById('phoneBox').value;
+    var description = document.getElementById('descriptionBox').value;
 
-    var password = document.getElementById("<%= passwordBox.ClientID %>").value;
-
-    var email = document.getElementById("<%= emailBox.ClientID %>").value;
-
-    var username_checker = {
-        language: "",
-        spaces: false
+    // Email validation
+    if (!isValidEmail(email)) {
+        displayError('Email', 'Please enter a valid email address.')
+        submitForm = false;
     }
 
-    var fname_checker = {
-        numbers: false,
-        language: "english",
-        smallLetter: false,
-        mixed: false,
-        spaces: false
+    // Password validation
+    if (!isValidPassword(password)) {
+        displayError('Password', 'Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.')
+        submitForm = false;
     }
 
-    var lname_checker = {
-        numbers: false,
-        language: "english",
-        smallLetter: false,
-        mixed: false,
-        spaces: false
+    // First name validation
+    if (!isValidName(firstName)) {
+        displayError('First Name', 'Please enter a valid first name (letters and hyphens only, at least 2 characters long).')
+        submitForm = false;
     }
 
-    if (!/^\S+$/.test(username))
-        username_checker.spaces = true;
-
-    else if (/^[A-z]+$/.test(username)) // checks if the language is English
-    {
-        username_checker.language = "english";
+    // Last name validation
+    if (!isValidName(lastName)) {
+        displayError('Last Name', 'Please enter a valid last name (letters and hyphens only, at least 2 characters long).')
+        submitForm = false;
     }
 
-    if (/[0-9]/.test(fname))
-        fname_checker.numbers = true;
-    else if (!/^\S+$/.test(fname))
-        fname_checker.spaces = true;
-
-    else if (/^[A-z]+$/.test(fname)) // checks if the language is English
-    {
-        fname_checker.language = "english";
-        if (fname[0].toLowerCase() === fname[0]) // checks first letter if it is uppercase or lowercase
-            fname_checker.smallLetter = true;
-    }
-    else if (/^[\u0590-\u05ea]+$/.test(fname))
-        fname_checker.language = "hebrew"; // Stopped here
-
-    else
-        fname_checker.mixed = true;
-
-
-    if (/[0-9]/.test(lname))
-        lname_checker.numbers = true;
-
-    else if (!/^\S+$/.test(lname))
-        lname_checker.spaces = true;
-
-    else if (/^[A-z]+$/.test(lname)) // checks if the language is English
-    {
-        lname_checker.language = "english";
-        if (lname[0].toLowerCase() === lname[0]) // checks first letter if it is uppercase or lowercase
-            lname_checker.smallLetter = true;
-    }
-    else if (/^[\u0590-\u05ea]+$/.test(lname))
-        lname_checker.language = "hebrew"; // Stopped here
-
-    else
-        lname_checker.mixed = true;
-
-
-    if (username_checker.language == "english") {
-        alert("Username must be in English.");
-        submitOk = false;
-    }
-        
-
-    if (fname_checker.numbers || lname_checker.numbers) {
-        alert("Number are not allowed to use in names.");
-        if (fname_checker.numbers)
-            document.getElementById("<%= first_nameBox.ClientID %>").value = "";
-        if (lname_checker.numbers)
-            document.getElementById("<%= last_nameBox.ClientID %>").value = "";
-        submitOk = false;
+    // Username validation
+    if (!isValidUsername(username)) {
+        displayError('Username', 'Please enter a valid username (alphanumeric characters and underscores only, at least 3 characters long).')
+        submitForm = false;
     }
 
-    if (fname_checker.spaces || lname_checker.spaces || username_checker.spaces) {
-        alert("Spaces are not allowed to use in names.");
-        if (fname_checker.spaces)
-            document.getElementById("<%= first_nameBox.ClientID %>").value = "";
-        if (lname_checker.spaces)
-            document.getElementById("<%= last_nameBox.ClientID %>").value = "";
-        if (username_checker.spaces)
-            document.getElementById("<%= usernameBox.ClientID %>").value = "";
-        submitOk = false;
+    // Birth date validation
+    if (!isValidBirthDate(birthDate)) {
+        displayError('Birth Date', 'Please enter a valid birth date.')
+        submitForm = false;
     }
 
-    if (fname_checker.smallLetter || lname_checker.smallLetter) {
-        alert("First letter of the name must be in uppercase.");
-        if (fname_checker.smallLetter)
-            document.getElementById("<%= first_nameBox.ClientID %>").value = "";
-        if (lname_checker.smallLetter)
-            document.getElementById("<%= last_nameBox.ClientID %>").value = "";
-        submitOk = false;
+    // Country validation
+    if (!isValidCountry(country)) {
+        displayError('Country', 'Please enter existing country')
+        submitForm = false;
     }
 
-    if (fname_checker.language != lname_checker.language) {
-        alert("Remember: you can't mix languages writing the name.\nSpecial symbols are not allowed to use in names.\nPlease, check your input name.");
-        document.getElementById("<%= first_nameBox.ClientID %>").value = "";
-        document.getElementById("<%= last_nameBox.ClientID %>").value = "";
-        submitOk = false;
+    // Phone validation
+    if (!isValidPhone(phone)) {
+        displayError('Phone Number', 'Please enter a valid 10-digit phone number.')
+        submitForm = false;
     }
 
-
-    // Phone checker
-    if (!/^(05[0-9]-[0-9]{7})+$/.test(tel)) {
-        alert("Phone number has to be in next format: 050-1234567");
-        document.getElementById("<%= phoneBox.ClientID %>").value = "";
-        submitOk = false;
+    // Description validation
+    if (!isValidDescription(description)) {
+        displayError('Description', 'Please enter a description (at least 10 characters long).')
+        submitForm = false;
     }
 
-    // Password checker
-    if (/\S/.test(password)) {
-        if (/[\u0590-\u05ea]/.test(password)) {
-            alert("Password cannot contain Hebrew letters.");
-            document.getElementById("<%= passwordBox.ClientID %>").value = "";
-            submitOk = false;
-        }
-    }
-
-    // Email checker
-    if (/([A-z]{1})([A-z0-9\-\_\.]{1,})\@([A-z0-9\-\_\.]{1,})\.[A-z]{2,3}/.test(email))
-        pass;
-    else {
-        alert("Check your email input. \nexample@gmail.com ");
-        document.getElementById("<%= emailBox.ClientID %>").value = "";
-        submitOk = false;
-    }
-
-
-    if (!submitOk)
-        return false
-    return true;
+    // Form is valid
+    return submitForm;
 }   
+function isValidEmail(email) {
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function isValidPassword(password) {
+    var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,}$/;
+    return passwordRegex.test(password);
+}
+
+function isValidName(name) {
+    var nameRegex = /^[a-zA-Z-]{2,}$/;
+    return nameRegex.test(name);
+}
+
+function isValidUsername(username) {
+    var usernameRegex = /^\w{3,}$/;
+    return usernameRegex.test(username);
+}
+
+function isValidBirthDate(birthDate) {
+    var today = new Date();
+    var selectedDate = new Date(birthDate);
+    return selectedDate <= today;
+}
+
+function isValidCountry(country) {
+    var validCountries = [
+        'Afghanistan',
+        'Albania',
+        'Algeria',
+        'Andorra',
+        'Angola',
+        'Antigua and Barbuda',
+        'Argentina',
+        'Armenia',
+        'Australia',
+        'Austria',
+        'Azerbaijan',
+        'Bahamas',
+        'Bahrain',
+        'Bangladesh',
+        'Barbados',
+        'Belarus',
+        'Belgium',
+        'Belize',
+        'Benin',
+        'Bhutan',
+        'Bolivia',
+        'Bosnia and Herzegovina',
+        'Botswana',
+        'Brazil',
+        'Brunei',
+        'Bulgaria',
+        'Burkina Faso',
+        'Burundi',
+        'Cabo Verde',
+        'Cambodia',
+        'Cameroon',
+        'Canada',
+        'Central African Republic',
+        'Chad',
+        'Chile',
+        'China',
+        'Colombia',
+        'Comoros',
+        'Congo, Democratic Republic of the',
+        'Congo, Republic of the',
+        'Costa Rica',
+        'Croatia',
+        'Cuba',
+        'Cyprus',
+        'Czech Republic',
+        'Denmark',
+        'Djibouti',
+        'Dominica',
+        'Dominican Republic',
+        'East Timor (Timor-Leste)',
+        'Ecuador',
+        'Egypt',
+        'El Salvador',
+        'Equatorial Guinea',
+        'Eritrea',
+        'Estonia',
+        'Eswatini',
+        'Ethiopia',
+        'Fiji',
+        'Finland',
+        'France',
+        'Gabon',
+        'Gambia',
+        'Georgia',
+        'Germany',
+        'Ghana',
+        'Greece',
+        'Grenada',
+        'Guatemala',
+        'Guinea',
+        'Guinea-Bissau',
+        'Guyana',
+        'Haiti',
+        'Honduras',
+        'Hungary',
+        'Iceland',
+        'India',
+        'Indonesia',
+        'Iran',
+        'Iraq',
+        'Ireland',
+        'Israel',
+        'Italy',
+        'Jamaica',
+        'Japan',
+        'Jordan',
+        'Kazakhstan',
+        'Kenya',
+        'Kiribati',
+        'Korea, North',
+        'Korea, South',
+        'Kosovo',
+        'Kuwait',
+        'Kyrgyzstan',
+        'Laos',
+        'Latvia',
+        'Lebanon',
+        'Lesotho',
+        'Liberia',
+        'Libya',
+        'Liechtenstein',
+        'Lithuania',
+        'Luxembourg',
+        'Madagascar',
+        'Malawi',
+        'Malaysia',
+        'Maldives',
+        'Mali',
+        'Malta',
+        'Marshall Islands',
+        'Mauritania',
+        'Mauritius',
+        'Mexico',
+        'Micronesia',
+        'Moldova',
+        'Monaco',
+        'Mongolia',
+        'Montenegro',
+        'Morocco',
+        'Mozambique',
+        'Myanmar (Burma)',
+        'Namibia',
+        'Nauru',
+        'Nepal',
+        'Netherlands',
+        'New Zealand',
+        'Nicaragua',
+        'Niger',
+        'Nigeria',
+        'North Macedonia (formerly Macedonia)',
+        'Norway',
+        'Oman',
+        'Pakistan',
+        'Palau',
+        'Palestine',
+        'Panama',
+        'Papua New Guinea',
+        'Paraguay',
+        'Peru',
+        'Philippines',
+        'Poland',
+        'Portugal',
+        'Qatar',
+        'Romania',
+        'Russia',
+        'Rwanda',
+        'Saint Kitts and Nevis',
+        'Saint Lucia',
+        'Saint Vincent and the Grenadines',
+        'Samoa',
+        'San Marino',
+        'Sao Tome and Principe',
+        'Saudi Arabia',
+        'Senegal',
+        'Serbia',
+        'Seychelles',
+        'Sierra Leone',
+        'Singapore',
+        'Slovakia',
+        'Slovenia',
+        'Solomon Islands',
+        'Somalia',
+        'South Africa',
+        'South Sudan',
+        'Spain',
+        'Sri Lanka',
+        'Sudan',
+        'Suriname',
+        'Sweden',
+        'Switzerland',
+        'Syria',
+        'Taiwan',
+        'Tajikistan',
+        'Tanzania',
+        'Thailand',
+        'Togo',
+        'Tonga',
+        'Trinidad and Tobago',
+        'Tunisia',
+        'Turkey',
+        'Turkmenistan',
+        'Tuvalu',
+        'Uganda',
+        'Ukraine',
+        'United Arab Emirates',
+        'United Kingdom',
+        'United States of America',
+        'Uruguay',
+        'Uzbekistan',
+        'Vanuatu',
+        'Vatican City (Holy See)',
+        'Venezuela',
+        'Vietnam',
+        'Yemen',
+        'Zambia',
+        'Zimbabwe'
+    ];
+    return validCountries.includes(country);
+}
+
+function isValidPhone(phone) {
+    var phoneRegex = /^\d{10}$/;
+    return phoneRegex.test(phone);
+}
+
+function isValidDescription(description) {
+    return description.length >= 10;
+}

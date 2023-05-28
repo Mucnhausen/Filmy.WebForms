@@ -15,12 +15,9 @@
                         <div class="row divide">
                             <asp:TextBox ID="usernameBox" runat="server" class="input1" placeholder="Username" autofocus="true"></asp:TextBox>
                             <asp:TextBox ID="passwordBox" runat="server" class="input1 margin-left" TextMode="Password" placeholder="Password"></asp:TextBox>
-<%--                            <input type="text" class="input1" placeholder="Email" autofocus>
-                            <input type="text" class="input1 margin-left" placeholder="Password">--%>
                         </div>
                         <div class="row">
                             <asp:Button ID="submitBtn" runat="server" class="submit" Text="Submit" OnClick="submitBtn_Click"/>
-                            <%--<input type="submit" class="submit">--%>
                         </div>
                     </div>
                     <div class="password-reset">

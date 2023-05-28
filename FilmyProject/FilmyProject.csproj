@@ -179,6 +179,11 @@
     <Content Include="images\movies\starwars_4.jpg" />
     <Content Include="images\movies\starwars_5.jpg" />
     <Content Include="images\movies\starwars_6.jpg" />
+    <Content Include="js\criticsManagementValidation.js" />
+    <Content Include="js\criticsOwnReviewsValidator.js" />
+    <Content Include="js\criticsProfileValidator.js" />
+    <Content Include="js\moviesManagementValidator.js" />
+    <Content Include="js\reviewsManagementValidator.js" />
     <Content Include="js\signInValidator.js" />
     <Content Include="js\test.js" />
     <Content Include="login.aspx" />
