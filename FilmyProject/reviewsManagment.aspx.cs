@@ -27,6 +27,45 @@ namespace FilmyProject
             ClientScript.RegisterStartupScript(this.GetType(), "toastr_custom", "toastr." + type + "('" + message + "', '" + title + "', { timeOut: 5000, progressBar: true, preventDuplicates: true, extendedTimeOut: 2000 });", true);
         }
 
+        void changeNoArticles(int manipulator)
+        {
+            try
+            {
+                int articles;
+                string username = null;
+                using (SqlCommand sqlCommand = new SqlCommand("SELECT * from reviews where Id = @id", con))
+                {
+                    con.Open();
+                    sqlCommand.Parameters.AddWithValue("@id", idBox.Text.Trim());
+                    SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        username = reader["critic_username"].ToString();
+                    }
+
+                    reader.Close();
+                    con.Close();
+                }
+                using (SqlCommand sqlCommand = new SqlCommand("SELECT COUNT(*) from reviews where critic_username = @username", con))
+                {
+                    con.Open();
+                    sqlCommand.Parameters.AddWithValue("@username", username);
+                    articles = (int)sqlCommand.ExecuteScalar();
+                    con.Close();
+                }
+                using (SqlCommand sqlCommand = new SqlCommand("UPDATE critics SET articles=@articles WHERE username = @username", con))
+                {
+                    con.Open();
+                    sqlCommand.Parameters.AddWithValue("@username", username);
+                    sqlCommand.Parameters.AddWithValue("@articles", articles + manipulator);
+                    sqlCommand.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+            catch (Exception ex) { Response.Write("<script>alert('An error occured. Try later \n " + ex.Message + " ');</script>"); }
+        }
+
         protected void findBtn_Click(object sender, EventArgs e)
         {
             if (ifReviewExists())
@@ -51,6 +90,7 @@ namespace FilmyProject
         {
             if (ifReviewExists())
             {
+                changeNoArticles(-1);
                 deleteReview();
                 GridView1.DataBind();
                 clearForm();

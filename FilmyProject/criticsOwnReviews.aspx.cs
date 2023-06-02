@@ -30,6 +30,29 @@ namespace FilmyProject
             //string.Format("Number: {0:N}", 157);
 
         }
+        void changeNoArticles(int manipulator)
+        {
+            try
+            {
+                int articles;
+                using (SqlCommand sqlCommand = new SqlCommand("SELECT COUNT(*) from reviews where critic_username = @username", con))
+                {
+                    con.Open();
+                    sqlCommand.Parameters.AddWithValue("@username", Session["username"]);
+                    articles = (int)sqlCommand.ExecuteScalar();
+                    con.Close();
+                }
+                using (SqlCommand sqlCommand = new SqlCommand("UPDATE critics SET articles=@articles WHERE username = @username", con))
+                {
+                    con.Open();
+                    sqlCommand.Parameters.AddWithValue("@username", Session["username"]);
+                    sqlCommand.Parameters.AddWithValue("@articles", articles + manipulator);
+                    sqlCommand.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+            catch (Exception ex) { Response.Write("<script>alert('An error occured. Try later \n " + ex.Message + " ');</script>"); }
+        }
         void displayToast(String type, String title, String message)
         {
             ClientScript.RegisterStartupScript(this.GetType(), "toastr_custom", "toastr." + type + "('" + message + "', '" + title + "', { timeOut: 5000, progressBar: true, preventDuplicates: true, extendedTimeOut: 2000 });", true);
@@ -49,6 +72,7 @@ namespace FilmyProject
             {
                     if (ifCriticIsApproved())
                     {
+                    changeNoArticles(1);
                         addNewReview();
                         clearForm();
                     displayToast("success", "Review", "Review updated successfully.");
@@ -75,12 +99,13 @@ namespace FilmyProject
             if (ifCriticIsApproved())
             {
                     if (ifReviewExists())
-                {
-                    deleteReview();
-                    GridView1.DataBind();
-                    clearForm();
-                    displayToast("warning", "Review", "Review deleted successfully.");
-                } else { displayToast("error", "Review ID", "Review ID does not match any review."); }
+                    {
+                        changeNoArticles(-1);
+                        deleteReview();
+                        GridView1.DataBind();
+                        clearForm();
+                        displayToast("warning", "Review", "Review deleted successfully.");
+                    } else { displayToast("error", "Review ID", "Review ID does not match any review."); }
             } else { displayToast("error", "Approval", "You have not been approved yet to post reviews by Filmy Team. Please, wait."); }
         }
         bool ifCriticIsApproved()
