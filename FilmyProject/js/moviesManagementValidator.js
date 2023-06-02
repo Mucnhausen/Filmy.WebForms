@@ -6,7 +6,6 @@
 function validateForm() {
     var submitForm = true;
     var title = document.getElementById('titleBox').value;
-    var id = document.getElementById('idBox').value;
     var date = document.getElementById('dateBox').value;
     var budget = document.getElementById('budgetBox').value;
     var rating = document.getElementById('ratingBox').value;
@@ -18,12 +17,6 @@ function validateForm() {
     // Title validation
     if (!isValidTitle(title)) {
         displayError('Title', 'Please enter a valid title (letters, numbesr, hyphens and spaces only).')
-        submitForm = false;
-    }
-
-    // ID name validation
-    if (!isValidID(id)) {
-        displayError('ID', 'Please enter a valid Movie ID (numbers only).')
         submitForm = false;
     }
 
@@ -69,11 +62,6 @@ function validateForm() {
 
 function isValidTitle(title) {
     return true;
-}
-
-function isValidID(id) {
-    var numberRegex = /^[0-9]+$/;
-    return numberRegex.test(id);
 }
 
 function isValidDate(date) {

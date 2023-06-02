@@ -87,9 +87,10 @@
             <div class="footer-nav">
                 <div class="footer-nav-wrapper">
                     <asp:LinkButton ID="Admin_loginLink" runat="server" class="footer-nav-link" Font-Underline="false" OnClick="Admin_loginLink_Click">Admin Login</asp:LinkButton>
-                    <asp:LinkButton ID="Reviews_managmentLink" runat="server" class="footer-nav-link" Font-Underline="false" OnClick="Reviews_managmentLink_Click">Reviews Managment</asp:LinkButton>
-                    <asp:LinkButton ID="Critics_managmentLink" runat="server" class="footer-nav-link" Font-Underline="false" OnClick="Critics_managmentLink_Click">Critics Managment</asp:LinkButton>
+                    <asp:LinkButton ID="Reviews_managmentLink" runat="server" class="footer-nav-link" Font-Underline="false" OnClick="Reviews_managmentLink_Click">Reviews Management</asp:LinkButton>
+                    <asp:LinkButton ID="Critics_managmentLink" runat="server" class="footer-nav-link" Font-Underline="false" OnClick="Critics_managmentLink_Click">Critics Management</asp:LinkButton>
                     <asp:LinkButton ID="Critics_applicationsLink" runat="server" class="footer-nav-link" Font-Underline="false" OnClick="Critics_applicationsLink_Click">Critics Applications</asp:LinkButton>
+                    <asp:LinkButton ID="Movies_managmentLink" runat="server" class="footer-nav-link" Font-Underline="false" OnClick="Movies_managmentLink_Click">Movies Management</asp:LinkButton>
 
                     <asp:LinkButton ID="OwnProfile_Link" runat="server" class="footer-nav-link" Font-Underline="false" OnClick="OwnProfile_Link_Click">My Profile</asp:LinkButton>
                     <asp:LinkButton ID="OwnReviews_Link" runat="server" class="footer-nav-link" Font-Underline="false" OnClick="OwnReviews_Link_Click">My Reviews</asp:LinkButton>

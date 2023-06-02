@@ -24,6 +24,7 @@ namespace FilmyProject
                 Critics_applicationsLink.Visible = false;
                 Critics_managmentLink.Visible = false;
                 Critics_applicationsLink.Visible = false;
+                Movies_managmentLink.Visible = false;
 
                 OwnProfile_Link.Visible = false;
                 OwnReviews_Link.Visible = false;
@@ -41,6 +42,7 @@ namespace FilmyProject
                 Critics_applicationsLink.Visible = false;
                 Critics_managmentLink.Visible = false;
                 Critics_applicationsLink.Visible = false;
+                Movies_managmentLink.Visible = false;
 
                 OwnProfile_Link.Visible = true;
                 OwnReviews_Link.Visible = true;
@@ -58,6 +60,7 @@ namespace FilmyProject
                 Critics_applicationsLink.Visible = true;
                 Critics_managmentLink.Visible = true;
                 Critics_applicationsLink.Visible = true;
+                Movies_managmentLink.Visible = true;
 
                 OwnProfile_Link.Visible = false;
                 OwnReviews_Link.Visible = false;
@@ -126,6 +129,11 @@ namespace FilmyProject
         protected void OwnReviews_Link_Click(object sender, EventArgs e)
         {
             Response.Redirect("criticsOwnReviews.aspx");
+        }
+
+        protected void Movies_managmentLink_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("moviesManagment.aspx");
         }
     }
 }

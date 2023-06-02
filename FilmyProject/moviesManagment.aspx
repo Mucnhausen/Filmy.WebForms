@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Filmy.Master" AutoEventWireup="true" CodeBehind="moviesManagment.aspx.cs" Inherits="FilmyProject.moviesManagment" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Filmy.Master" AutoEventWireup="true" CodeBehind="moviesManagment.aspx.cs" Inherits="FilmyProject.moviesManagment" UnobtrusiveValidationMode="None"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/criticsManagment.css" rel="stylesheet" />
     <script src="js/moviesManagementValidator.js"></script>
@@ -16,7 +16,7 @@
                         <asp:TextBox ID="titleBox" runat="server" class="input2" placeholder="Title" ClientIDMode="Static"></asp:TextBox>
                     </div>
                     <div class="row">
-                        <asp:TextBox ID="idBox" runat="server" class="input3" placeholder="ID" ClientIDMode="Static" required="required"></asp:TextBox>
+                        <asp:TextBox ID="idBox" runat="server" class="input3" placeholder="ID" ClientIDMode="Static"></asp:TextBox>
                         <asp:Button ID="findBtn" runat="server" class="find margin-left" Text="Find" OnClick="findBtn_Click"/>
                     </div>
                     <div class="row">
@@ -36,6 +36,16 @@
                     </div>
                     <div class="row textarea">
                         <asp:TextBox ID="producersBox" runat="server" TextMode="MultiLine" Rows="4" class="input2" placeholder="Producers (',' - separator)" ClientIDMode="Static"></asp:TextBox>
+                    </div>
+                     <div class="row buttons ">
+                        <asp:FileUpload ID="FileUpload1" runat="server" accept=".png,.jpg,.jpeg" style="padding-top: 6px; background-color: white;" title="Recommended resolution: 360x512 "/>
+                        <asp:RegularExpressionValidator ID="regexValidator" runat="server"
+                                 ControlToValidate="FileUpload1"
+                                 ErrorMessage="Only images are allowed" 
+                                 ValidationExpression="(.*?)\.(jpg|jpeg|png|JPG|JPEG|PNG)$"
+                                 style="display: none" >
+                        </asp:RegularExpressionValidator>
+                        <asp:Button ID="UploadBtn" runat="server" class="upload input5 " Text="Upload" OnClick="UploadBtn_Click"/>
                     </div>
                     <div class="row textarea">
                         <asp:TextBox ID="descriptionBox" runat="server" TextMode="MultiLine" Rows="4" class="input2" placeholder="Tell about yourself" ClientIDMode="Static"></asp:TextBox>
@@ -60,6 +70,7 @@
                         <asp:BoundField DataField="rating" HeaderText="rating" SortExpression="rating" />
                         <asp:BoundField DataField="description" HeaderText="description" SortExpression="description" />
                         <asp:BoundField DataField="budget" HeaderText="budget" SortExpression="budget" />
+                        <asp:BoundField DataField="image_path" HeaderText="image_path" SortExpression="image_path" />
                     </Columns>
                 </asp:GridView> <%--Table--%>
                 <div class="main-table-item">

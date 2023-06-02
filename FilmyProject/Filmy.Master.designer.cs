@@ -141,6 +141,15 @@ namespace FilmyProject
         protected global::System.Web.UI.WebControls.LinkButton Critics_applicationsLink;
 
         /// <summary>
+        /// Movies_managmentLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Movies_managmentLink;
+
+        /// <summary>
         /// OwnProfile_Link control.
         /// </summary>
         /// <remarks>

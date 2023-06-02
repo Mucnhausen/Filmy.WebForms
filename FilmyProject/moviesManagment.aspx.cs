@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -37,6 +38,66 @@ namespace FilmyProject
                 getMovieById();
             } else {
                 displayToast("error", "Movie ID", "Movie ID does not match any movie.");
+            }
+        }
+        protected void UploadBtn_Click(object sender, EventArgs e)
+        {
+            if (FileUpload1.HasFile)
+                if (ifMovieExists())
+                {
+                    string fileType = Path.GetFileName(FileUpload1.PostedFile.ContentType);
+                    string previousPath = getPreviousPicturePath();
+                    if (Path.GetExtension(previousPath) != fileType && Path.GetFileName(Path.GetDirectoryName(previousPath)) != "main_content")
+                    {
+                        File.Delete(Server.MapPath("\\") + previousPath);
+                    }
+                    string fileName = idBox.Text.Trim() + "." + Path.GetFileName(FileUpload1.PostedFile.ContentType);
+                    string filePath = Server.MapPath("~/images/movies/") + fileName;
+                    FileUpload1.SaveAs(filePath);
+                    updateMovieImage("images/movies/" + fileName);
+                    DataBind();
+                    displayToast("success", "Picture", "Movie poster updated successfully.");
+                }
+                else { displayToast("error", "Movie", "Movie ID does not match any movie."); }
+        }
+        void updateMovieImage(String file_path)
+        {
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("UPDATE movies SET image_path=@image_path WHERE id = @id", con);
+                cmd.Parameters.AddWithValue("@image_path", file_path);
+                cmd.Parameters.AddWithValue("@id", idBox.Text.Trim());
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
+        }
+        String getPreviousPicturePath()
+        {
+            try
+            {
+                String path = null;
+                con.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM movies WHERE id=@id", con);
+                cmd.Parameters.AddWithValue("@id", idBox.Text.Trim());
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    path = reader["image_path"].ToString();
+                }
+                reader.Close();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                return path;
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>"); return null;
             }
         }
 
@@ -153,8 +214,8 @@ namespace FilmyProject
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO movies(movie_name,date,genres,actors,producers,rating,description,budget) " +
-                    "values(@title,@date,@genres,@actors,@producers,@rating,@description,@budget)", con);
+                SqlCommand cmd = new SqlCommand("INSERT INTO movies(movie_name,date,genres,actors,producers,rating,description,budget,image_path) " +
+                    "values(@title,@date,@genres,@actors,@producers,@rating,@description,@budget,@image_path)", con);
                 cmd.Parameters.AddWithValue("@title", titleBox.Text.Trim());
                 cmd.Parameters.AddWithValue("@genres", genresBox.Text.Trim());
                 cmd.Parameters.AddWithValue("@actors", actorsBox.Text.Trim());
@@ -163,6 +224,7 @@ namespace FilmyProject
                 cmd.Parameters.AddWithValue("@rating", ratingBox.Text.Trim());
                 cmd.Parameters.AddWithValue("@budget", budgetBox.Text.Trim());
                 cmd.Parameters.AddWithValue("@description", descriptionBox.Text.Trim());
+                cmd.Parameters.AddWithValue("@image_path", "images/main_content/default_movie.jpg");
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
