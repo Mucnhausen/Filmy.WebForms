@@ -35,10 +35,7 @@ namespace FilmyProject
                 displayToast("success", "Critic", "Critic updated successfully.");
                 DataBind();
             }
-            //SqlDataSource1.SelectCommand = "SELECT r.ID AS review_id, m.title AS movie_title, m.description AS movie_description " +
-            //   "FROM reviews_test r " +
-            //   "JOIN movies_test m ON r.movie_id = m.ID " +
-            //   "WHERE r.ID = 1";
+
 
 
         }

@@ -10,12 +10,6 @@ function validateForm() {
     var rating = document.getElementById('ratingBox').value;
     var review = document.getElementById('reviewBox').value;
 
-    // ID name validation
-    if (!isValidID(id)) {
-        displayError('ID', 'Please enter a valid Review ID (numbers).')
-        submitForm = false;
-    }
-
     // Last name validation
     if (!isValidDDL(ddl)) {
         displayError('Movie', 'Please choose a valid movie(from the dropdown list).')
@@ -36,10 +30,6 @@ function validateForm() {
 
     // Form is valid
     return submitForm;
-}
-function isValidID(id) {
-    var numberRegex = /^[0-9]+$/;
-    return numberRegex.test(id);
 }
 
 

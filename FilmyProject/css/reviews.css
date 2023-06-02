@@ -1,3 +1,7 @@
+.half-star {
+    background-color: grey;
+}
+
 .content {
     color: #444;
 
@@ -5,6 +9,10 @@
     width: 1200px;
     margin: 50px auto;
     padding: 10px;
+}
+
+.wrapper {
+    width: 1200px;
 }
 
 .grid-container {
@@ -33,7 +41,7 @@
 }
 
 .content-grid-big-rating {
-    display: flex;
+
     margin: 30px auto;
 }
 
