@@ -10,7 +10,7 @@
             <Columns>
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <div class="grid-container">
+                            <a class="grid-container" href="critic.aspx?username=<%# Eval("username") %>" style="text-decoration: none; color: black;">
                                 <div class="grid-item">
                                     <div class="content-grid-img">
                                         <img class="content-grid-img" src="<%# Eval("image_path") %>" alt="">
@@ -35,7 +35,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

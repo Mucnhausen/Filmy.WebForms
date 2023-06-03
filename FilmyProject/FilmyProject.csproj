@@ -102,12 +102,14 @@
     </Content>
     <Content Include="content\toastr.css" />
     <Content Include="content\toastr.min.css" />
+    <Content Include="critic.aspx" />
     <Content Include="criticsApplications.aspx" />
     <Content Include="criticsManagment.aspx" />
     <Content Include="criticsOwnReviews.aspx" />
     <Content Include="criticsProfile.aspx" />
     <Content Include="css\about.css" />
     <Content Include="css\criticsProfile.css" />
+    <Content Include="css\individualPages.css" />
     <Content Include="css\dropdownlist.css" />
     <Content Include="css\footer.css" />
     <Content Include="css\header.css" />
@@ -119,6 +121,7 @@
     <Content Include="css\criticsManagment.css" />
     <Content Include="css\reviewsManagment.css" />
     <Content Include="css\signin.css" />
+    <Content Include="css\stars.css" />
     <Content Include="DataTables\DataTables-1.13.4\css\dataTables.bootstrap.css" />
     <Content Include="DataTables\DataTables-1.13.4\css\dataTables.bootstrap.min.css" />
     <Content Include="DataTables\DataTables-1.13.4\css\dataTables.bootstrap4.css" />
@@ -188,9 +191,11 @@
     <Content Include="js\signInValidator.js" />
     <Content Include="js\test.js" />
     <Content Include="login.aspx" />
+    <Content Include="movie.aspx" />
     <Content Include="movies.aspx" />
     <Content Include="moviesManagment.aspx" />
     <Content Include="passwordReset.aspx" />
+    <Content Include="review.aspx" />
     <Content Include="reviews.aspx" />
     <Content Include="reviewsManagment.aspx" />
     <Content Include="content\toastr.scss" />
@@ -219,6 +224,13 @@
     </Compile>
     <Compile Include="adminLogin.aspx.designer.cs">
       <DependentUpon>adminLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="critic.aspx.cs">
+      <DependentUpon>critic.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="critic.aspx.designer.cs">
+      <DependentUpon>critic.aspx</DependentUpon>
     </Compile>
     <Compile Include="criticsApplications.aspx.cs">
       <DependentUpon>criticsApplications.aspx</DependentUpon>
@@ -265,6 +277,13 @@
     <Compile Include="login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="movie.aspx.cs">
+      <DependentUpon>movie.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="movie.aspx.designer.cs">
+      <DependentUpon>movie.aspx</DependentUpon>
+    </Compile>
     <Compile Include="movies.aspx.cs">
       <DependentUpon>movies.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -300,6 +319,13 @@
     </Compile>
     <Compile Include="critics.aspx.designer.cs">
       <DependentUpon>critics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="review.aspx.cs">
+      <DependentUpon>review.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="review.aspx.designer.cs">
+      <DependentUpon>review.aspx</DependentUpon>
     </Compile>
     <Compile Include="reviews.aspx.cs">
       <DependentUpon>reviews.aspx</DependentUpon>

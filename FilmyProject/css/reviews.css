@@ -1,7 +1,3 @@
-.half-star {
-    background-color: grey;
-}
-
 .content {
     color: #444;
 
@@ -45,13 +41,6 @@
     margin: 30px auto;
 }
 
-.fa {
-    font-size: 36px;
-}
-
-.checked {
-    color: orange;
-}
 
 .content-grid-big-number {
     text-align: center;

@@ -6,13 +6,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <div class="content">
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>"
-                SelectCommand="SELECT [movie_name], [date], [budget], [genres], [actors], [producers], [rating], [description], [image_path] FROM [movies]">
+                SelectCommand="SELECT [Id], [movie_name], [date], [budget], [genres], [actors], [producers], [rating], [description], [image_path] FROM [movies]">
             </asp:SqlDataSource>
             <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" class="wrapper table">
                 <Columns>
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <div class="grid-container">
+                            <a class="grid-container" href="movie.aspx?id=<%# Eval("id") %>" style="text-decoration: none; color: black;">
                                 <div class="grid-item">
                                     <div class="content-grid-img">
                                         <img class="content-grid-img" src="<%# Eval("image_path") %>" alt="">
@@ -32,14 +32,14 @@
                                                 <li>Genres: <%# Eval("genres") %></li>
                                                 <li>Actors: <span><%# Eval("actors") %></span></li>
                                                 <li>Producers: <%# Eval("producers") %></li>
-                                                <li>Rating: <%# Eval("rating") %></li>
+                                                <li>Rating: <%# Eval("rating") %> out of 10</li>
                                                 <li>Description: </li>
                                             </ul>
                                             <p class="description"><%# Eval("description") %></p>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>
