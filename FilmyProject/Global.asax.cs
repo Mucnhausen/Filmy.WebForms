@@ -17,7 +17,7 @@ namespace FilmyProject
 
         protected void Session_Start(object sender, EventArgs e)
         {
-            Session["role"] = "admin";
+            Session["role"] = "visitor";
             Session["username"] = "Unknown";
         }
 
