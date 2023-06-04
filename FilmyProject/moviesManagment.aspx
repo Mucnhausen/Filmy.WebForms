@@ -13,7 +13,7 @@
                 </div>
                 <div class="form" action="">
                     <div class="row">
-                        <asp:TextBox ID="titleBox" runat="server" class="input2" placeholder="Title" ClientIDMode="Static"></asp:TextBox>
+                        <asp:TextBox ID="titleBox" runat="server" class="input2" placeholder="Title" ClientIDMode="Static" ></asp:TextBox>
                     </div>
                     <div class="row">
                         <asp:TextBox ID="idBox" runat="server" class="input3" placeholder="ID" ClientIDMode="Static"></asp:TextBox>
@@ -23,7 +23,7 @@
                         <asp:TextBox ID="dateBox" runat="server" TextMode="Date" class="input2 date" title="Publishing date" ClientIDMode="Static"></asp:TextBox>
                     </div>
                     <div class="row">
-                        <asp:TextBox ID="budgetBox" runat="server" class="input2" placeholder="Budget" ClientIDMode="Static"></asp:TextBox>
+                        <asp:TextBox ID="budgetBox" runat="server" class="input2" placeholder="Budget" ClientIDMode="Static" Title="Valid formats: $100, $100,000.00, 100, 100.00"></asp:TextBox>
                     </div>
                     <div class="row">
                         <asp:TextBox ID="ratingBox" runat="server" TextMode="Number" class="input2" placeholder="Rating" min="1" max="10" ClientIDMode="Static"></asp:TextBox>

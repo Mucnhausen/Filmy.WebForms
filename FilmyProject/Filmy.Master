@@ -37,7 +37,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" autocomplete="off">
         <header class="header">
         <div class="header-box">
             <div class="header-box-image-wrapper">

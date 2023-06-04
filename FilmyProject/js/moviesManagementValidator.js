@@ -71,7 +71,7 @@ function isValidDate(date) {
 }
 
 function isValidBudget(budget) {
-    var budgetRegex = /^\$?\d+(?:\.\d+)?(?:M|K)?$/i;
+    var budgetRegex = /^\$?\d+(,\d{3})*(\.\d{1,2})?$/;
     return budgetRegex.test(budget);
 }
 
