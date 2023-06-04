@@ -59,7 +59,7 @@ namespace FilmyProject
                     genres.Text = reader["genres"].ToString();
                     actors.Text = reader["actors"].ToString();
                     producers.Text = reader["producers"].ToString();
-                    date.Text = DateTime.Parse(reader["date"].ToString()).ToString("yyyy-MM-dd");
+                    date.Text = DateTime.Parse(reader["date"].ToString()).ToString("dd/MM/yyyy");
                     string rating = reader["rating"].ToString();
                     starRating(Int32.Parse(rating));
 

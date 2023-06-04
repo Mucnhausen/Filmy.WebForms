@@ -41,9 +41,12 @@ namespace FilmyProject
             else
             {
                 addNewCritic();
+                Session["role"] = "critic";
+                Session["username"] = usernameBox.Text.Trim();
                 displayToast("success" , "SIGN IN", "You are successfully signed in.");
                 sendSuccessSignInEmail();
                 clearForm();
+                Response.Redirect("index.aspx");
             }
         }
 
