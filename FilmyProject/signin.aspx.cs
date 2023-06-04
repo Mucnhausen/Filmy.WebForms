@@ -21,12 +21,15 @@ namespace FilmyProject
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Check if the user has the necessary role to view the page
             if (Session["role"].ToString() == "admin" || Session["role"].ToString() == "critic")
             {
                 Response.Write("You have no rights to view the content of that page");
                 Response.End();
             }
         }
+
+        // Display a toast notification using Toastr library
         void displayToast(String type, String title, String message)
         {
             ClientScript.RegisterStartupScript(this.GetType(), "toastr_custom", "toastr." + type + "('" + message + "', '" + title + "', { timeOut: 5000, progressBar: true, preventDuplicates: true, extendedTimeOut: 2000 });", true);
@@ -34,22 +37,35 @@ namespace FilmyProject
 
         protected void submitBtn_Click(object sender, EventArgs e)
         {
+            // Check if the critic already exists
             if (ifCriticExists())
             {
                 displayToast("error", "Username", "This username is already taken.");
             }
             else
             {
+                // Add a new critic to the database
                 addNewCritic();
+
+                // Set session variables
                 Session["role"] = "critic";
                 Session["username"] = usernameBox.Text.Trim();
-                displayToast("success" , "SIGN IN", "You are successfully signed in.");
+
+                // Display success toast notification
+                displayToast("success", "SIGN IN", "You are successfully signed in.");
+
+                // Send success sign-in email
                 sendSuccessSignInEmail();
+
+                // Clear the form fields
                 clearForm();
+
+                // Redirect to the index page
                 Response.Redirect("index.aspx");
             }
         }
 
+        // Check if the critic already exists in the database
         bool ifCriticExists()
         {
             try
@@ -60,13 +76,25 @@ namespace FilmyProject
                     sqlCommand.Parameters.AddWithValue("@username", usernameBox.Text.Trim());
                     int userCount = (int)sqlCommand.ExecuteScalar();
                     con.Close();
-                    if (userCount > 0) { return true; } else { return false; }
+                    if (userCount > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
-
             }
-            catch (Exception ex) { Response.Write("<script>alert('An error occured. Try later \n " + ex.Message + " ');</script>"); return false; }
+            catch (Exception ex)
+            {
+                // Display an alert with the error message
+                Response.Write("<script>alert('An error occured. Try later \n " + ex.Message + " ');</script>");
+                return false;
+            }
         }
 
+        // Add a new critic to the database
         void addNewCritic()
         {
             try
@@ -92,10 +120,12 @@ namespace FilmyProject
             }
             catch (Exception ex)
             {
+                // Display an alert with the error message
                 Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
         }
 
+        // Clear the form fields
         void clearForm()
         {
             emailBox.Text = "";
@@ -109,7 +139,7 @@ namespace FilmyProject
             descriptionBox.Text = "";
         }
 
-
+        // Send a success sign-in email to the user
         void sendSuccessSignInEmail()
         {
             MimeMessage message = new MimeMessage();
@@ -123,18 +153,23 @@ namespace FilmyProject
                 Text = "<!DOCTYPE html><html><head>  <meta charset=\"UTF-8\">  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">  <title>Welcome to our site!</title>  <style>    /* Global CSS styles */    body {      font-family: Arial, sans-serif;      background-color: #f5f5f5;    }    /* Container styles */    .container {      max-width: 600px;      margin: 0 auto;      padding: 20px;      background-color: #f2eaff;      border-radius: 5px;      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);    }    /* Heading styles */    h1 {      color: #3a256d;      margin-top: 0;      text-align: center;    }    /* Content styles */    p {      color: #5d487f;      line-height: 1.5;    }    /* Button styles */    .button {      display: inline-block;      padding: 10px 20px;      background-color: #693ba3;      color: #ffffff;      text-decoration: none;      border-radius: 4px;    }    /* Footer styles */    .footer {      text-align: center;      margin-top: 20px;      color: #999999;    }  </style></head><body>  <div class=\"container\">    <h1>Welcome to Filmy!</h1>    <p>Dear " + first_nameBox.Text.Trim() + " ,</p>    <p>Thank you for registering on our site. We are thrilled to have you as a part of our community of movie enthusiasts!</p>    <p>As a registered movie critic, you'll have the opportunity to share your valuable reviews with our audience.</p>    <p>Start exploring our site today and let us know if you have any questions or need assistance. We're here to help!</p>    <p>      <a style=\"color: white\" class=\"button\" href=\"mailto:filmy.community.help@gmail.com?subject=" + usernameBox.Text.Trim() + "&body={Describe the encountered problem}\">Ask for support</a>    </p>    <div class=\"footer\">      <p>Best regards,</p>      <p>The Filmy Team</p>    </div>  </div></body></html>"
             };
 
-
             SmtpClient client = new SmtpClient();
 
             try
             {
+                // Connect to the SMTP server and send the email
                 client.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
                 client.Authenticate("filmy.community.help@gmail.com", "doadkcgpdoymsyjh");
                 client.Send(message);
             }
-            catch (Exception ex) { Response.Write("<script>alert(' " + ex.Message + " ');</script>"); }
+            catch (Exception ex)
+            {
+                // Display an alert with the error message
+                Response.Write("<script>alert(' " + ex.Message + " ');</script>");
+            }
             finally
             {
+                // Disconnect from the SMTP server and dispose of the client object
                 client.Disconnect(true);
                 client.Dispose();
             }
