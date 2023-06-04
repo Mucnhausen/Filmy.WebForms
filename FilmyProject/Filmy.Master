@@ -43,19 +43,19 @@
         </div>
             <div class="header-nav">
                 <div class="header-nav-wrapper">
-                    <div class="header-nav-link active">
+                    <div class="header-nav-link" id="index" runat="server">
                         <a href="index.aspx" class="header-nav-link-text">Home</a>
                     </div>
-                    <div class="header-nav-link">
+                    <div class="header-nav-link"  id="critics" runat="server">
                         <a href="critics.aspx" class="header-nav-link-text">Critics</a>
                     </div>
-                    <div class="header-nav-link">
+                    <div class="header-nav-link"  id="movies" runat="server">
                         <a href="movies.aspx" class="header-nav-link-text">Movies</a>
                     </div>
-                    <div class="header-nav-link">
+                    <div class="header-nav-link"  id="reviews" runat="server">
                         <a href="reviews.aspx" class="header-nav-link-text">Reviews</a>
                     </div>
-                    <div class="header-nav-link">
+                    <div class="header-nav-link"  id="about" runat="server">
                         <a href="about.aspx" class="header-nav-link-text">About</a>
                     </div>
                     <div class="header-nav-buttons">
@@ -67,9 +67,6 @@
                 </div>
             </div>
     </header>
-        <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">visitor</asp:LinkButton>
-        <asp:LinkButton ID="LinkButton2" runat="server" OnClick="LinkButton2_Click">critic</asp:LinkButton>
-        <asp:LinkButton ID="LinkButton3" runat="server" OnClick="LinkButton3_Click">admin</asp:LinkButton>
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>

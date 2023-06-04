@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,6 +12,26 @@ namespace FilmyProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Path.GetFileName(Request.Url.AbsolutePath) == "index.aspx")
+            {
+                index.Attributes["class"] = "active header-nav-link";
+            }
+            else if (Path.GetFileName(Request.Url.AbsolutePath) == "critics.aspx")
+            {
+                critics.Attributes["class"] = "active header-nav-link";
+            }
+            else if (Path.GetFileName(Request.Url.AbsolutePath) == "movies.aspx")
+            {
+                movies.Attributes["class"] = "active header-nav-link";
+            }
+            else if (Path.GetFileName(Request.Url.AbsolutePath) == "reviews.aspx")
+            {
+                reviews.Attributes["class"] = "active header-nav-link";
+            }
+            else if (Path.GetFileName(Request.Url.AbsolutePath) == "about.aspx")
+            {
+                about.Attributes["class"] = "active header-nav-link";
+            }
             // Check the role of the user and set the visibility of the navigation links accordingly
             if (Session["role"].ToString() == "visitor")
             {
