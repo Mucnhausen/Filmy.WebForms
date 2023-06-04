@@ -7,6 +7,10 @@
     padding: 10px;
 }
 
+.wrapper {
+    width: 1200px;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: 30% 70%;
@@ -33,17 +37,10 @@
 }
 
 .content-grid-big-rating {
-    display: flex;
+
     margin: 30px auto;
 }
 
-.fa {
-    font-size: 36px;
-}
-
-.checked {
-    color: orange;
-}
 
 .content-grid-big-number {
     text-align: center;

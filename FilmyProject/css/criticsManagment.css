@@ -64,10 +64,18 @@
     width: 60%;
 }
 
+.input4 {
+    width: 70%;
+}
+
+.input5 {
+    width: 30%;
+}
+
 textarea {
     border-radius: 10px;
     border: 3px solid #3B1788;
-    font-size: 24px;
+    font-size: 16px;
     padding-left: 15px;
     margin-bottom: 25px;
     height: 100px;
@@ -82,6 +90,15 @@ textarea {
 
 .date {
     padding-top: 6px;
+}
+
+.upload {
+    background-color: #1000ff;
+    border: none;
+    text-align: center;
+    color: white;
+    cursor: pointer;
+    padding-left: 0px !important;
 }
 
 .add {

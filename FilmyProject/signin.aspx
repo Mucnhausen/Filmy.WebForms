@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Filmy.Master" AutoEventWireup="true" CodeBehind="signin.aspx.cs" Inherits="FilmyProject.signin" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="css/signin.css" rel="stylesheet" />
+    <script src="js/signInValidator.js"></script>
 </asp:Content>
 
 
@@ -13,41 +14,32 @@
                 </div>
                 <div class="form" action="">
                     <div class="row divide">
-                        <asp:TextBox ID="emailBox" runat="server" TextMode="Email" class="input1" placeholder="Email"></asp:TextBox>
-                        <asp:TextBox ID="passwordBox" runat="server" TextMode="Password" class="input1 margin-left" placeholder="Password"></asp:TextBox>
-<%--                        <input type="text" class="input1" placeholder="Email" autofocus>
-                        <input type="text" class="input1 margin-left" placeholder="Password">--%>
+                        <asp:TextBox ID="emailBox" runat="server" TextMode="Email" class="input1" placeholder="Email" ClientIDMode="Static"></asp:TextBox>
+                        <asp:TextBox ID="passwordBox" runat="server" TextMode="Password" class="input1 margin-left" placeholder="Password" ClientIDMode="Static"></asp:TextBox>
                     </div>
                     <div class="row divide">
-                        <asp:TextBox ID="first_nameBox" runat="server" class="input1" placeholder="First Name"></asp:TextBox>
-                        <asp:TextBox ID="last_nameBox" runat="server" class="input1 margin-left" placeholder="Last Name"></asp:TextBox>
-<%--                        <input type="text" class="input1" placeholder="First Name">
-                        <input type="text" class="input1 margin-left" placeholder="Last Name">--%>
+                        <asp:TextBox ID="first_nameBox" runat="server" class="input1" placeholder="First Name" ClientIDMode="Static"></asp:TextBox>
+                        <asp:TextBox ID="last_nameBox" runat="server" class="input1 margin-left" placeholder="Last Name" ClientIDMode="Static"></asp:TextBox>
                     </div>
                     <div class="row">
-                        <asp:TextBox ID="usernameBox" runat="server" class="input2" placeholder="Username"></asp:TextBox>
-                        <%--<input type="text" class="input2" placeholder="Username">--%>
+                        <asp:TextBox ID="usernameBox" runat="server" class="input2" placeholder="Username" ClientIDMode="Static"></asp:TextBox>
                     </div>
                     <div class="row">
-                        <asp:TextBox ID="birth_dateBox" runat="server" TextMode="Date" class="input2 date"></asp:TextBox>
-                        <%--<input type="date" class="input2 date">--%>
+                        <asp:TextBox ID="birth_dateBox" runat="server" TextMode="Date" class="input2 date" ClientIDMode="Static"></asp:TextBox>
                     </div>
                     <div class="row">
-                        <asp:TextBox ID="countryBox" runat="server" class="input2" placeholder="Country"></asp:TextBox>
-                        <%--<input type="text" class="input2" placeholder="Country">--%>
+                        <asp:TextBox ID="countryBox" runat="server" class="input2" placeholder="Country" ClientIDMode="Static"></asp:TextBox>
                     </div>
                     <div class="row">
-                        <asp:TextBox ID="phoneBox" runat="server" TextMode="Phone" class="input2" placeholder="Phone No"></asp:TextBox>
-                        <%--<input type="text" class="input2" placeholder="Phone No">--%>
+                        <asp:TextBox ID="phoneBox" runat="server" TextMode="Phone" class="input2" placeholder="Phone No" ClientIDMode="Static"> </asp:TextBox>
                     </div>
                     <div class="row textarea">
-                        <asp:TextBox ID="descriptionBox" runat="server" TextMode="MultiLine" Rows="4" class="input2" placeholder="Tell about yourself"></asp:TextBox>
-                        <%--<input type="text" class="input2" placeholder="Tell about yourself">--%>
+                        <asp:TextBox ID="descriptionBox" runat="server" TextMode="MultiLine" Rows="4" class="input2" placeholder="Tell about yourself" ClientIDMode="Static"></asp:TextBox>
                     </div>
                     <div class="row">
-                        <asp:Button ID="submitBtn" runat="server" class="input2 submit" Text="Submit"/>
-                        <%--<input type="submit" class="input2 submit">--%>
+                        <asp:Button ID="submitBtn" runat="server" class="input2 submit" Text="Submit" OnClick="submitBtn_Click" OnClientClick="return validateForm();"/>
                     </div>
+                    <div id="errorMessages" runat="server"></div>
                 </div>
             </div>
             <div class="main-image-wrapper">

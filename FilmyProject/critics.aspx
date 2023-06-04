@@ -5,79 +5,40 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="content">
-        <div class="grid-container">
-            <div class="grid-item">
-                <div class="content-grid-img">
-                    <img class="content-grid-img" src="../images/critics/roger_ebert.jpg" alt="">
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="content-grid-item-main">
-                    <div class="content-grid-header">
-                        <h1 class="content-grid-header-text">
-                            Roger Ebert
-                        </h1>
-                    </div>
-                    <div class="content-grid-body">
-                        <ul class="content-grid-body-list">
-                            <li>Born: June 18, 1942</li>
-                            <li>Died: April 4, 2013 (age 70)</li>
-                            <li>Years active: 1967-2013</li>
-                            <li>Notable awards: Pulitzer Prize for Criticism</li>
-                            <li>Education: <span>University of Illinois, Urbana-Champaign (BA), University of Chicago</span></li>
-                            <li>Notable works: Sneak Previews, At the Movies, The Great Movies, Beyond the Valley of the Dolls, Life Itself: A Memoir</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="content-grid-img">
-                    <img class="content-grid-img" src="../images/critics/kenneth_turan.jpg" alt="">
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="content-grid-item-main">
-                    <div class="content-grid-header">
-                        <h1 class="content-grid-header-text">
-                            Kenneth Turan
-                        </h1>
-                    </div>
-                    <div class="content-grid-body">
-                        <ul class="content-grid-body-list">
-                            <li>Born: October 27, 1946</li>
-                            <li>Died: Alive (age 76)</li>
-                            <li>Years active: 1991-2020</li>
-                            <li>Notable awards: 2006: Special Citation. National Society of Film Critics Awards.</li>
-                            <li>Education: <span>B.A. Swarthmore College, M.A. Columbia University</span></li>
-                            <li>Notable works: Not to Be Missed, Free for All, Now In Theaters Everywhere, Never Coming To A Theater Near You, Sundance to Sarajevo</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="content-grid-img">
-                    <img class="content-grid-img" src="../images/critics/mark_kermode.jpg" alt="">
-                </div>
-            </div>
-            <div class="grid-item">
-                <div class="content-grid-item-main">
-                    <div class="content-grid-header">
-                        <h1 class="content-grid-header-text">
-                            Mark Kermode
-                        </h1>
-                    </div>
-                    <div class="content-grid-body">
-                        <ul class="content-grid-body-list">
-                            <li>Born: July 2, 1963</li>
-                            <li>Died: Alive (age 59)</li>
-                            <li>Years active: 1992-Today</li>
-                            <li>Notable awards: Best Specialist Contributor of the Year, Speech Award</li>
-                            <li>Education: <span>Haberdashers' Aske's Boys' School</span></li>
-                            <li>Notable works: Kermode's best films of the year, Kermode's best films of the decade</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [username], [first_name], [last_name], [birth_date], [country], [articles], [description], [image_path] FROM [critics]"></asp:SqlDataSource>
+        <asp:GridView ID="GridView1" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" class="wrapper table">
+            <Columns>
+                    <asp:TemplateField>
+                        <ItemTemplate>
+                            <a class="grid-container" href="critic.aspx?username=<%# Eval("username") %>" style="text-decoration: none; color: black;">
+                                <div class="grid-item">
+                                    <div class="content-grid-img">
+                                        <img class="content-grid-img" src="<%# Eval("image_path") %>" alt="">
+                                    </div>
+                                </div>
+                                <div class="grid-item">
+                                    <div class="content-grid-item-main">
+                                        <div class="content-grid-header">
+                                            <h1 class="content-grid-header-text">
+                                                <%# Eval("first_name") %> <%# Eval("last_name") %>
+                                            </h1>
+                                        </div>
+                                        <div class="content-grid-body">
+                                            <ul class="content-grid-body-list">
+                                                <li>Username: <%# Eval("username") %></li>
+                                                <li>Born: <%# Eval("birth_date") %></li>
+                                                <li>Country: <%# Eval("country") %></li>
+                                                <li>Articles Number: <%# Eval("articles") %></li>
+                                                <li>Description: </li>
+                                            </ul>
+                                            <p class="description"><%# Eval("description") %></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+        </asp:GridView>
     </div>
 </asp:Content>
