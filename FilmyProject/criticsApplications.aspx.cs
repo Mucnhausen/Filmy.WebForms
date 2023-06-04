@@ -82,8 +82,6 @@ namespace FilmyProject
                     countryBox.Text = reader["country"].ToString();
                     phoneBox.Text = reader["tel"].ToString();
                     descriptionBox.Text = reader["description"].ToString();
-
-                    // Use the retrieved data as needed (e.g., display it in your ASP.NET Web Forms page)
                 }
                 reader.Close();
                 cmd.ExecuteNonQuery();

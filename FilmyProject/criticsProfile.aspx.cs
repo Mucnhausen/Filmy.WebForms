@@ -143,10 +143,6 @@ namespace FilmyProject
                     descriptionBox.Text = reader["description"].ToString();
                     
                     Image1.ImageUrl = reader["image_path"].ToString();
-
-
-
-                    // Use the retrieved data as needed (e.g., display it in your ASP.NET Web Forms page)
                 }
                 reader.Close();
                 cmd.ExecuteNonQuery();

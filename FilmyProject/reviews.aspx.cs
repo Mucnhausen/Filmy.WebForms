@@ -26,7 +26,6 @@ namespace FilmyProject
                 int modifier = 0;
                 if (rating % 2 != 0) { half_stars = true; modifier = 1;  }
 
-                // Find the placeholder span element
                 HtmlGenericControl starsPlaceholder = e.Row.FindControl("starsPlaceholder") as HtmlGenericControl;
                 for (int i = 0; i < full_stars; i++)
                 {

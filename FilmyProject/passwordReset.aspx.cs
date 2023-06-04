@@ -75,8 +75,6 @@ namespace FilmyProject
                     critic_info[0] = reader["first_name"].ToString();
                     critic_info[1] = reader["email"].ToString();
                     critic_info[2] = reader["password"].ToString();
-
-                    // Use the retrieved data as needed (e.g., display it in your ASP.NET Web Forms page)
                 }
                 reader.Close();
                 cmd.ExecuteNonQuery();

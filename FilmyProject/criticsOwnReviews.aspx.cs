@@ -10,10 +10,6 @@ using System.Web.UI.WebControls;
 
 namespace FilmyProject
 {
-    //SqlDataSource1.SelectCommand = "SELECT r.ID AS review_id, m.title AS movie_title, m.description AS movie_description " +
-    //   "FROM reviews_test r " +
-    //   "JOIN movies_test m ON r.movie_id = m.ID " +
-    //   "WHERE r.ID = 1";
     public partial class criticsOwnReviews : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
@@ -25,10 +21,6 @@ namespace FilmyProject
                 Response.End();
             }
             GridView1.DataBind();
-            //SqlDataSource1.SelectCommand = $"SELECT * FROM reviews WHERE critic_username = \" {Session["username"]} \"";
-            //SqlDataSource1.SelectCommand = $"SELECT * FROM reviews WHERE critic_username = \"" + Session["username"] + "\"";
-            //string.Format("Number: {0:N}", 157);
-
         }
         void changeNoArticles(int manipulator)
         {
@@ -158,8 +150,6 @@ namespace FilmyProject
                     movie_id = reader["movie_id"].ToString();
                     ratingBox.Text = reader["rating"].ToString();
                     reviewBox.Text = reader["review_text"].ToString();
-
-                    // Use the retrieved data as needed (e.g., display it in your ASP.NET Web Forms page)
                 }
                 reader.Close();
                 cmd.ExecuteNonQuery();
@@ -193,8 +183,6 @@ namespace FilmyProject
                 if (reader.Read())
                 {
                     id = Int32.Parse(reader["ID"].ToString());
-
-                    // Use the retrieved data as needed (e.g., display it in your ASP.NET Web Forms page)
                 }
                 reader.Close();
                 cmd.ExecuteNonQuery();

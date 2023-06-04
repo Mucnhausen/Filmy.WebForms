@@ -66,8 +66,6 @@ namespace FilmyProject
                     budget.Text = reader["budget"].ToString();
                     review_text.Text = reader["description"].ToString();
                     Image1.ImageUrl = reader["image_path"].ToString();
-
-                    // Use the retrieved data as needed (e.g., display it in your ASP.NET Web Forms page)
                 }
                 reader.Close();
                 cmd.ExecuteNonQuery();
@@ -86,7 +84,6 @@ namespace FilmyProject
             int modifier = 0;
             if (rating % 2 != 0) { half_stars = true; modifier = 1; }
 
-            // Find the placeholder span element
             HtmlGenericControl starsPlaceholder = container.FindControl("starsPlaceholder") as HtmlGenericControl;
             for (int i = 0; i < full_stars; i++)
             {

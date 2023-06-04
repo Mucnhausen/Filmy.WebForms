@@ -57,8 +57,6 @@ namespace FilmyProject
                         movie_id = reader["movie_id"].ToString();
 
                         review_publish_date.Text = DateTime.Parse(reader["date"].ToString()).ToString("dd MMMM yyyy");
-
-                        // rating
                         int review_rating = Int32.Parse(reader["rating"].ToString());
                         starRating(review_rating, "starsPlaceholderREVIEW");
                     }
@@ -89,7 +87,6 @@ namespace FilmyProject
 
                     if (reader.Read())
                     {
-                        // rating
                         int movie_rating = Int32.Parse(reader["rating"].ToString());
                         starRating(movie_rating, "starsPlaceholderMOVIE");
 
@@ -118,7 +115,6 @@ namespace FilmyProject
             int modifier = 0;
             if (rating % 2 != 0) { half_stars = true; modifier = 1; }
 
-            // Find the placeholder span element
             HtmlGenericControl starsPlaceholder = container.FindControl(div) as HtmlGenericControl;
             for (int i = 0; i < full_stars; i++)
             {

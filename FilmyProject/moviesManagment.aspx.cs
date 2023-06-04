@@ -17,8 +17,6 @@ namespace FilmyProject
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
         protected void Page_Load(object sender, EventArgs e)
         {
-            // ClientScript.RegisterStartupScript(this.GetType(), "toastr_custom", "toastr.info('Custom message', 'Custom Title', { timeOut: 5000 , progressBar: true , newestOnTop: true });", true);
-
             if (Session["role"].ToString() == "visitor" || Session["role"].ToString() == "critic")
             {
                 Response.Write("You have no rights to view the content of that page");
@@ -162,9 +160,6 @@ namespace FilmyProject
                     dateBox.Text = DateTime.Parse(reader["date"].ToString()).ToString("yyyy-MM-dd");
                     ratingBox.Text = reader["rating"].ToString();
                     budgetBox.Text = reader["budget"].ToString();
-                    descriptionBox.Text = reader["description"].ToString();
-
-                    // Use the retrieved data as needed (e.g., display it in your ASP.NET Web Forms page)
                 }
                 reader.Close();
                 cmd.ExecuteNonQuery();

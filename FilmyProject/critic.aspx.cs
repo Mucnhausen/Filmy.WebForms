@@ -56,14 +56,10 @@ namespace FilmyProject
                     country.Text = reader["country"].ToString();
                     birth_date.Text = reader["birth_date"].ToString();
                     reg_date.Text = reader["reg_date"].ToString();
-                    //birth_date.Text = DateTime.ParseExact(reader["birth_date"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("dd/MM/yyyy");
-                    //reg_date.Text = DateTime.ParseExact(reader["regh_date"].ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("dd/MM/yyyy");
                     description.Text = reader["description"].ToString();
                     pending.Text = reader["pending"].ToString();
                     articles.Text = reader["articles"].ToString();
                     Image1.ImageUrl = reader["image_path"].ToString();
-
-                    // Use the retrieved data as needed (e.g., display it in your ASP.NET Web Forms page)
                 }
                 reader.Close();
                 cmd.ExecuteNonQuery();

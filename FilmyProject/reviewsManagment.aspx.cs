@@ -127,8 +127,6 @@ namespace FilmyProject
                 if (reader.Read())
                 {
                     id = Int32.Parse(reader["ID"].ToString());
-
-                    // Use the retrieved data as needed (e.g., display it in your ASP.NET Web Forms page)
                 }
                 reader.Close();
                 cmd.ExecuteNonQuery();
@@ -156,8 +154,6 @@ namespace FilmyProject
                     movie_id = reader["movie_id"].ToString();
                     ratingBox.Text = reader["rating"].ToString();
                     reviewBox.Text = reader["review_text"].ToString();
-
-                    // Use the retrieved data as needed (e.g., display it in your ASP.NET Web Forms page)
                 }
                 reader.Close();
                 cmd.ExecuteNonQuery();

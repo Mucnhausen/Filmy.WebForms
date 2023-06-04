@@ -21,12 +21,6 @@
     <link rel="stylesheet" href="/DataTables/datatables.css" />
     <script src="/DataTables/datatables.js"></script>
 
-<%--    <script rel="javascript">
-        $(document).ready(function () {
-            $('#myTable').DataTable();
-        });
-    </script>--%>
-
     <script type="text/javascript">
         $(document).ready(function () {
             $(".table").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
@@ -41,7 +35,6 @@
         <header class="header">
         <div class="header-box">
             <div class="header-box-image-wrapper">
-                <!-- <img src="../images/header-image.png" class="header-box-image" alt=""> -->
                 <div class="header-box-image-shade"></div>
             </div>
             <div class="header-box-text-wrapper">
@@ -66,9 +59,7 @@
                         <a href="about.aspx" class="header-nav-link-text">About</a>
                     </div>
                     <div class="header-nav-buttons">
-                        <%--<a href="login.aspx"><button class="header-nav-buttons-object">Log In</button></a>--%><%--link button--%>
                         <asp:LinkButton ID="LoginLink" runat="server" class="header-nav-buttons-object" Font-Underline="false" OnClick="LoginLink_Click">Log In</asp:LinkButton>
-                        <%--<a href="signin.aspx"><button class="header-nav-buttons-object">Sign In</button></a>--%><%--link button--%>
                         <asp:LinkButton ID="SigninLink" runat="server" class="header-nav-buttons-object" Font-Underline="false" OnClick="SigninLink_Click">Sign In</asp:LinkButton>
                         <asp:Label ID="NameLabel" runat="server" Text="Welcome, Unknown"></asp:Label>
                         <asp:LinkButton ID="ExitLink" runat="server" class="header-nav-buttons-object" Font-Underline="false" OnClick="ExitLink_Click">Disconnect</asp:LinkButton>
