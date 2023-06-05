@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,13 +12,35 @@ namespace FilmyProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Path.GetFileName(Request.Url.AbsolutePath) == "index.aspx")
+            {
+                index.Attributes["class"] = "active header-nav-link";
+            }
+            else if (Path.GetFileName(Request.Url.AbsolutePath) == "critics.aspx")
+            {
+                critics.Attributes["class"] = "active header-nav-link";
+            }
+            else if (Path.GetFileName(Request.Url.AbsolutePath) == "movies.aspx")
+            {
+                movies.Attributes["class"] = "active header-nav-link";
+            }
+            else if (Path.GetFileName(Request.Url.AbsolutePath) == "reviews.aspx")
+            {
+                reviews.Attributes["class"] = "active header-nav-link";
+            }
+            else if (Path.GetFileName(Request.Url.AbsolutePath) == "about.aspx")
+            {
+                about.Attributes["class"] = "active header-nav-link";
+            }
+            // Check the role of the user and set the visibility of the navigation links accordingly
             if (Session["role"].ToString() == "visitor")
             {
                 LoginLink.Visible = true;
                 SigninLink.Visible = true;
                 ExitLink.Visible = false;
 
-                NameLabel.Visible = false; NameLabel.Text = null;
+                NameLabel.Visible = false;
+                NameLabel.Text = null;
 
                 Admin_loginLink.Visible = true;
                 Reviews_managmentLink.Visible = false;
@@ -35,7 +58,8 @@ namespace FilmyProject
                 SigninLink.Visible = false;
                 ExitLink.Visible = true;
 
-                NameLabel.Visible = true; NameLabel.Text = "Welcome " + Session["username"];
+                NameLabel.Visible = true;
+                NameLabel.Text = "Welcome " + Session["username"];
 
                 Admin_loginLink.Visible = false;
                 Reviews_managmentLink.Visible = false;
@@ -53,7 +77,8 @@ namespace FilmyProject
                 SigninLink.Visible = false;
                 ExitLink.Visible = true;
 
-                NameLabel.Visible = true; NameLabel.Text = "ADMIN: " + Session["username"];
+                NameLabel.Visible = true;
+                NameLabel.Text = "ADMIN: " + Session["username"];
 
                 Admin_loginLink.Visible = false;
                 Reviews_managmentLink.Visible = true;
@@ -79,7 +104,9 @@ namespace FilmyProject
 
         protected void ExitLink_Click(object sender, EventArgs e)
         {
-            Session["role"] = "visitor"; Session["username"] = "Unknown";
+            // Reset session variables and redirect to the index page
+            Session["role"] = "visitor";
+            Session["username"] = "Unknown";
             Response.Redirect("index.aspx");
         }
 
@@ -105,18 +132,21 @@ namespace FilmyProject
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
+            // Set the session role to "visitor" and redirect to the current page
             Session["role"] = "visitor";
             Response.Redirect(Request.RawUrl);
         }
 
         protected void LinkButton2_Click(object sender, EventArgs e)
         {
+            // Set the session role to "critic" and redirect to the current page
             Session["role"] = "critic";
             Response.Redirect(Request.RawUrl);
         }
 
         protected void LinkButton3_Click(object sender, EventArgs e)
         {
+            // Set the session role to "admin" and redirect to the current page
             Session["role"] = "admin";
             Response.Redirect(Request.RawUrl);
         }

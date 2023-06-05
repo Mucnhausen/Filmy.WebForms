@@ -13,8 +13,12 @@ namespace FilmyProject
     public partial class reviewsManagment : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            // This event handler is called when the page loads
+            // You can add code here to perform any necessary actions when the page loads
+
             if (Session["role"].ToString() == "visitor" || Session["role"].ToString() == "critic")
             {
                 Response.Write("You have no rights to view the content of that page");
@@ -24,6 +28,9 @@ namespace FilmyProject
 
         void displayToast(String type, String title, String message)
         {
+            // This method displays a toast notification using the toastr.js library
+            // The type, title, and message parameters define the content of the notification
+
             ClientScript.RegisterStartupScript(this.GetType(), "toastr_custom", "toastr." + type + "('" + message + "', '" + title + "', { timeOut: 5000, progressBar: true, preventDuplicates: true, extendedTimeOut: 2000 });", true);
         }
 
@@ -33,6 +40,7 @@ namespace FilmyProject
             {
                 int articles;
                 string username = null;
+
                 using (SqlCommand sqlCommand = new SqlCommand("SELECT * from reviews where Id = @id", con))
                 {
                     con.Open();
@@ -47,6 +55,7 @@ namespace FilmyProject
                     reader.Close();
                     con.Close();
                 }
+
                 using (SqlCommand sqlCommand = new SqlCommand("SELECT COUNT(*) from reviews where critic_username = @username", con))
                 {
                     con.Open();
@@ -54,6 +63,7 @@ namespace FilmyProject
                     articles = (int)sqlCommand.ExecuteScalar();
                     con.Close();
                 }
+
                 using (SqlCommand sqlCommand = new SqlCommand("UPDATE critics SET articles=@articles WHERE username = @username", con))
                 {
                     con.Open();
@@ -81,7 +91,6 @@ namespace FilmyProject
             {
                 updateReview();
                 GridView1.DataBind();
-                Response.Write("<script>alert('Review updated successfully.');</script>");
             }
             else { displayToast("error", "Review ID", "Review ID does not match any existing review."); }
         }
@@ -94,7 +103,6 @@ namespace FilmyProject
                 deleteReview();
                 GridView1.DataBind();
                 clearForm();
-                Response.Write("<script>alert('Review deleted successfully.');</script>");
             }
             else { displayToast("error", "Review ID", "Review ID does not match any existing review."); }
         }
@@ -115,6 +123,7 @@ namespace FilmyProject
             }
             catch (Exception ex) { Response.Write("<script>alert('An error occured. Try later \n " + ex.Message + " ');</script>"); return false; }
         }
+
         int getMovieIDByTitle()
         {
             try
@@ -127,8 +136,6 @@ namespace FilmyProject
                 if (reader.Read())
                 {
                     id = Int32.Parse(reader["ID"].ToString());
-
-                    // Use the retrieved data as needed (e.g., display it in your ASP.NET Web Forms page)
                 }
                 reader.Close();
                 cmd.ExecuteNonQuery();
@@ -156,8 +163,6 @@ namespace FilmyProject
                     movie_id = reader["movie_id"].ToString();
                     ratingBox.Text = reader["rating"].ToString();
                     reviewBox.Text = reader["review_text"].ToString();
-
-                    // Use the retrieved data as needed (e.g., display it in your ASP.NET Web Forms page)
                 }
                 reader.Close();
                 cmd.ExecuteNonQuery();
@@ -192,12 +197,16 @@ namespace FilmyProject
                 cmd.Parameters.AddWithValue("@rating", ratingBox.Text.Trim());
                 cmd.ExecuteNonQuery();
                 con.Close();
-            }
+
+                displayToast("success", "Review", "Review updated successfully.");
+
+    }
             catch (Exception ex)
             {
                 Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
         }
+
         void deleteReview()
         {
             try
@@ -207,14 +216,19 @@ namespace FilmyProject
                 cmd.Parameters.AddWithValue("@id", idBox.Text.Trim());
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                displayToast("warning", "Review", "Review deleted successfully.");
             }
             catch (Exception ex)
             {
                 Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
         }
+
         void clearForm()
         {
+            // This method clears the input fields and resets the dropdown list to its initial state
+
             idBox.Text = "";
             reviewBox.Text = "";
             ratingBox.Text = "";

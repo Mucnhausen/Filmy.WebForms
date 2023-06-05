@@ -9,7 +9,7 @@
         <div class="main">
             <div class="main-form">
                 <div class="slogan">
-                    <h1 class="slogan-text">You are the power!</h1>
+                    <h1 class="slogan-text">Now, you define reality!</h1>
                 </div>
                 <div class="form" action="">
                     <div class="row">
@@ -74,24 +74,6 @@
                     </Columns>
                 </asp:GridView> <%--Table--%>
                 <div class="main-table-item">
-<%--                    <table id="myTable" class="display table">
-                    <thead>
-                        <tr>
-                            <th>Column 1</th>
-                            <th>Column 2</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Row 1 Data 1</td>
-                            <td>Row 1 Data 2</td>
-                        </tr>
-                        <tr>
-                            <td>Row 2 Data 1</td>
-                            <td>Row 2 Data 2</td>
-                        </tr>
-                    </tbody>
-                </table>--%>
                 </div>
             </div>
         </div>

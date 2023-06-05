@@ -15,6 +15,7 @@ namespace FilmyProject
     public partial class criticsProfile : System.Web.UI.Page
     {
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -27,6 +28,8 @@ namespace FilmyProject
                 Response.End();
             }
         }
+
+        // Function to display toast notification
         void displayToast(String type, String title, String message)
         {
             ClientScript.RegisterStartupScript(this.GetType(), "toastr_custom", "toastr." + type + "('" + message + "', '" + title + "', { timeOut: 5000, progressBar: true, preventDuplicates: true, extendedTimeOut: 2000 });", true);
@@ -38,10 +41,12 @@ namespace FilmyProject
             {
                 string fileType = Path.GetFileName(FileUpload1.PostedFile.ContentType);
                 string previousPath = getPreviousPicturePath();
+
                 if (Path.GetExtension(previousPath) != fileType)
                 {
                     File.Delete(Server.MapPath("\\") + previousPath);
                 }
+
                 string fileName = Session["username"] + "." + Path.GetFileName(FileUpload1.PostedFile.ContentType);
                 string filePath = Server.MapPath("~/images/critics/") + fileName;
                 FileUpload1.SaveAs(filePath);
@@ -55,15 +60,15 @@ namespace FilmyProject
         {
             updateCritic();
             FillCriticData();
-            displayToast("success", "Info", "Info updated successfully.");
         }
+
         protected void savePasswordBtn_Click(object sender, EventArgs e)
         {
             updateCriticPassword();
             FillCriticData();
-            displayToast("success", "Password", "Password updated successfully.");
         }
 
+        // Function to update the critic image path in the database
         void updateCriticImage(String file_path)
         {
             try
@@ -80,6 +85,8 @@ namespace FilmyProject
                 Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
         }
+
+        // Function to update the critic's password in the database
         void updateCriticPassword()
         {
             try
@@ -90,12 +97,16 @@ namespace FilmyProject
                 cmd.Parameters.AddWithValue("@username", Session["username"]);
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                displayToast("success", "Password", "Password updated successfully.");
             }
             catch (Exception ex)
             {
                 Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
         }
+
+        // Function to get the previous picture path of the critic from the database
         String getPreviousPicturePath()
         {
             try
@@ -108,7 +119,7 @@ namespace FilmyProject
 
                 if (reader.Read())
                 {
-                    path = reader["image_path"].ToString(); 
+                    path = reader["image_path"].ToString();
                 }
                 reader.Close();
                 cmd.ExecuteNonQuery();
@@ -117,10 +128,12 @@ namespace FilmyProject
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "');</script>"); return null;
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+                return null;
             }
         }
 
+        // Function to fill the critic's data in the form
         void FillCriticData()
         {
             try
@@ -141,12 +154,8 @@ namespace FilmyProject
                     phoneBox.Text = reader["tel"].ToString();
                     passwordBox.Attributes["value"] = reader["password"].ToString();
                     descriptionBox.Text = reader["description"].ToString();
-                    
+
                     Image1.ImageUrl = reader["image_path"].ToString();
-
-
-
-                    // Use the retrieved data as needed (e.g., display it in your ASP.NET Web Forms page)
                 }
                 reader.Close();
                 cmd.ExecuteNonQuery();
@@ -158,6 +167,7 @@ namespace FilmyProject
             }
         }
 
+        // Function to update the critic's information in the database
         void updateCritic()
         {
             try
@@ -174,6 +184,8 @@ namespace FilmyProject
                 cmd.Parameters.AddWithValue("@description", descriptionBox.Text.Trim());
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                displayToast("success", "Info", "Info updated successfully.");
             }
             catch (Exception ex)
             {

@@ -51,6 +51,15 @@ namespace FilmyProject
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl starsPlaceholderREVIEW;
 
         /// <summary>
+        /// hrefCritic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor hrefCritic;
+
+        /// <summary>
         /// username control.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,15 @@ namespace FilmyProject
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label review_text;
+
+        /// <summary>
+        /// hrefMovie control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor hrefMovie;
 
         /// <summary>
         /// title control.

@@ -13,31 +13,33 @@ namespace FilmyProject
 {
     public partial class criticsManagment : System.Web.UI.Page
     {
+        // Establish a connection to the database using the connection string from the configuration file
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Check the user's role and restrict access for critics and visitors
             if (Session["role"].ToString() == "visitor" || Session["role"].ToString() == "critic")
             {
                 Response.Write("You have no rights to view the content of that page");
                 Response.End();
             }
-            DataBind();
+            DataBind(); // Bind data to the controls on page load
         }
+
+        // Method to display toast notifications
         void displayToast(String type, String title, String message)
         {
             ClientScript.RegisterStartupScript(this.GetType(), "toastr_custom", "toastr." + type + "('" + message + "', '" + title + "', { timeOut: 5000, progressBar: true, preventDuplicates: true, extendedTimeOut: 2000 });", true);
         }
+
         protected void updateBtn_Click(object sender, EventArgs e)
         {
             if (ifCriticExists())
             {
                 updateCritic();
-                displayToast("success", "Critic", "Critic updated successfully.");
                 DataBind();
             }
-
-
-
         }
 
         protected void deleteBtn_Click(object sender, EventArgs e)
@@ -45,7 +47,7 @@ namespace FilmyProject
             if (ifCriticExists())
             {
                 deleteCritic();
-                displayToast("warning", "Critic", "Critic deleted successfully.");
+                clearForm();
                 DataBind();
             }
         }
@@ -57,9 +59,11 @@ namespace FilmyProject
                 getCriticByUsername();
             }
         }
+
         protected void UploadBtn_Click(object sender, EventArgs e)
         {
             if (FileUpload1.HasFile)
+            {
                 if (ifCriticExists())
                 {
                     string fileType = Path.GetFileName(FileUpload1.PostedFile.ContentType);
@@ -74,8 +78,15 @@ namespace FilmyProject
                     updateCriticImage("images/critics/" + fileName);
                     DataBind();
                     displayToast("success", "Picture", "Critic picture updated successfully.");
-                } else { displayToast("error", "Username", "Username does not match any registrated critic."); }
+                }
+                else
+                {
+                    displayToast("error", "Username", "Username does not match any registered critic.");
+                }
+            }
         }
+
+        // Method to update the critic's image path in the database
         void updateCriticImage(String file_path)
         {
             try
@@ -86,12 +97,16 @@ namespace FilmyProject
                 cmd.Parameters.AddWithValue("@username", usernameBox.Text.Trim());
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                displayToast("success", "Critic", "Critic updated successfully.");
             }
             catch (Exception ex)
             {
                 Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
         }
+
+        // Method to retrieve the previous picture path of the critic from the database
         String getPreviousPicturePath()
         {
             try
@@ -113,10 +128,12 @@ namespace FilmyProject
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "');</script>"); return null;
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+                return null;
             }
         }
 
+        // Method to retrieve critic information from the database based on the provided username
         void getCriticByUsername()
         {
             try
@@ -128,6 +145,7 @@ namespace FilmyProject
 
                 if (reader.Read())
                 {
+                    // Set the values of the controls with the retrieved data
                     first_nameBox.Text = reader["first_name"].ToString();
                     last_nameBox.Text = reader["last_name"].ToString();
                     emailBox.Text = reader["email"].ToString();
@@ -136,8 +154,6 @@ namespace FilmyProject
                     phoneBox.Text = reader["tel"].ToString();
                     descriptionBox.Text = reader["description"].ToString();
                     pendingBox.Text = reader["pending"].ToString();
-
-                    // Use the retrieved data as needed (e.g., display it in your ASP.NET Web Forms page)
                 }
                 reader.Close();
                 cmd.ExecuteNonQuery();
@@ -149,6 +165,7 @@ namespace FilmyProject
             }
         }
 
+        // Check if a critic exists in the database based on the provided username
         bool ifCriticExists()
         {
             try
@@ -159,13 +176,24 @@ namespace FilmyProject
                     sqlCommand.Parameters.AddWithValue("@username", usernameBox.Text.Trim());
                     int userCount = (int)sqlCommand.ExecuteScalar();
                     con.Close();
-                    if (userCount > 0) { return true; } else { return false; }
+                    if (userCount > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
-
             }
-            catch (Exception ex) { Response.Write("<script>alert('An error occured. Try later \n " + ex.Message + " ');</script>"); return false; }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('An error occurred. Try later \n " + ex.Message + " ');</script>");
+                return false;
+            }
         }
 
+        // Method to update the critic's information in the database
         void updateCritic()
         {
             try
@@ -191,15 +219,22 @@ namespace FilmyProject
             }
         }
 
+        // Method to delete a critic from the database and all reviews related to him
         void deleteCritic()
         {
             try
             {
                 con.Open();
+                SqlCommand cmd2 = new SqlCommand("DELETE FROM reviews WHERE critic_username = @username", con);
+                cmd2.Parameters.AddWithValue("@username", usernameBox.Text.Trim());
+                cmd2.ExecuteNonQuery();
+
                 SqlCommand cmd = new SqlCommand("DELETE FROM critics WHERE username = @username", con);
                 cmd.Parameters.AddWithValue("@username", usernameBox.Text.Trim());
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                displayToast("warning", "Critic", "Critic deleted successfully.");
             }
             catch (Exception ex)
             {
@@ -207,6 +242,7 @@ namespace FilmyProject
             }
         }
 
+        // Method to clear the form's input fields
         void clearForm()
         {
             emailBox.Text = "";
@@ -219,7 +255,5 @@ namespace FilmyProject
             descriptionBox.Text = "";
             pendingBox.Text = "";
         }
-
-
     }
 }

@@ -16,7 +16,7 @@
                         <span class="stars-placeholder" runat="server" id="starsPlaceholderREVIEW"></span>
                     </div>
                     <div class="text-container padding">
-                        <p class="text medium"><asp:Label ID="username" runat="server" Text="Label"></asp:Label></p>
+                        <p class="text medium"><a href="#" runat="server" id="hrefCritic" Cssclass="color: black; text-decoration: none;"><asp:Label ID="username" runat="server" Text="Label"></asp:Label></a></p>
                         <p class="text"><span class="bold">Date of upload: </span><asp:Label ID="review_publish_date" runat="server" Text="Label"></asp:Label></p>
                         <span class="bold">Review: </span>
                         <p class="text"><asp:Label ID="review_text" runat="server" Text="Label"></asp:Label></p>
@@ -25,7 +25,7 @@
                 
                 <div class="wrapper">
                     <div class="heading">
-                        <p class="text big"><asp:Label ID="title" runat="server" Text="Label"></asp:Label></p>
+                        <p class="text big"><a href="#" runat="server" id="hrefMovie" Cssclass="color: black !important; text-decoration: none !important;"><asp:Label ID="title" runat="server" Text="Label"></asp:Label></a></p>
                         <p class="text medium">Official rating</p>
                         <span class="stars-placeholder" runat="server" id="starsPlaceholderMOVIE"></span>
                     </div>

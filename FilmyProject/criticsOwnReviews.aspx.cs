@@ -10,31 +10,30 @@ using System.Web.UI.WebControls;
 
 namespace FilmyProject
 {
-    //SqlDataSource1.SelectCommand = "SELECT r.ID AS review_id, m.title AS movie_title, m.description AS movie_description " +
-    //   "FROM reviews_test r " +
-    //   "JOIN movies_test m ON r.movie_id = m.ID " +
-    //   "WHERE r.ID = 1";
     public partial class criticsOwnReviews : System.Web.UI.Page
     {
+        // Connection to the database
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Check if the user has the necessary role to view the page
             if (Session["role"].ToString() == "admin" || Session["role"].ToString() == "visitor")
             {
                 Response.Write("You have no rights to view the content of that page");
                 Response.End();
             }
-            GridView1.DataBind();
-            //SqlDataSource1.SelectCommand = $"SELECT * FROM reviews WHERE critic_username = \" {Session["username"]} \"";
-            //SqlDataSource1.SelectCommand = $"SELECT * FROM reviews WHERE critic_username = \"" + Session["username"] + "\"";
-            //string.Format("Number: {0:N}", 157);
 
+            GridView1.DataBind();
         }
+
+        // Update the number of articles for the critic
         void changeNoArticles(int manipulator)
         {
             try
             {
                 int articles;
+                // Get the count of reviews for the critic
                 using (SqlCommand sqlCommand = new SqlCommand("SELECT COUNT(*) from reviews where critic_username = @username", con))
                 {
                     con.Open();
@@ -42,6 +41,8 @@ namespace FilmyProject
                     articles = (int)sqlCommand.ExecuteScalar();
                     con.Close();
                 }
+
+                // Update the count in the critics table
                 using (SqlCommand sqlCommand = new SqlCommand("UPDATE critics SET articles=@articles WHERE username = @username", con))
                 {
                     con.Open();
@@ -51,12 +52,16 @@ namespace FilmyProject
                     con.Close();
                 }
             }
-            catch (Exception ex) { Response.Write("<script>alert('An error occured. Try later \n " + ex.Message + " ');</script>"); }
+            catch (Exception ex) { Response.Write("<script>alert('An error occurred. Try later \n " + ex.Message + " ');</script>"); }
         }
+
+        // Display a toast notification
         void displayToast(String type, String title, String message)
         {
             ClientScript.RegisterStartupScript(this.GetType(), "toastr_custom", "toastr." + type + "('" + message + "', '" + title + "', { timeOut: 5000, progressBar: true, preventDuplicates: true, extendedTimeOut: 2000 });", true);
         }
+
+        // Find button click event handler
         protected void findBtn_Click(object sender, EventArgs e)
         {
             if (ifReviewExists())
@@ -66,21 +71,24 @@ namespace FilmyProject
             else { displayToast("error", "Review ID", "Review ID does not match any review."); }
         }
 
+        // Add button click event handler
         protected void addBtn_Click(object sender, EventArgs e)
         {
             if (ifCriticIsApproved())
             {
-                    if (ifCriticIsApproved())
-                    {
+                if (ifCriticIsApproved())
+                {
                     changeNoArticles(1);
-                        addNewReview();
-                        clearForm();
-                    displayToast("success", "Review", "Review updated successfully.");
+                    addNewReview();
+                    clearForm();
                     GridView1.DataBind();
-                    } else { displayToast("error", "Review ID", "Review ID does not match any review."); }
-            } else { displayToast("error", "Approval", "You have not been approved yet to post reviews by Filmy Team. Please, wait."); }
+                }
+                else { displayToast("error", "Review ID", "Review ID does not match any review."); }
+            }
+            else { displayToast("error", "Approval", "You have not been approved yet to post reviews by Filmy Team. Please, wait."); }
         }
 
+        // Update button click event handler
         protected void updateBtn_Click(object sender, EventArgs e)
         {
             if (ifCriticIsApproved())
@@ -89,25 +97,30 @@ namespace FilmyProject
                 {
                     updateReview();
                     GridView1.DataBind();
-                    displayToast("success", "Review", "Review updated successfully.");
-                } else { displayToast("error", "Review ID", "Review ID does not match any review."); }
-            } else { displayToast("error", "Approval", "You have not been approved yet to post reviews by Filmy Team. Please, wait."); }
+                }
+                else { displayToast("error", "Review ID", "Review ID does not match any review."); }
+            }
+            else { displayToast("error", "Approval", "You have not been approved yet to post reviews by Filmy Team. Please, wait."); }
         }
 
+        // Delete button click event handler
         protected void deleteBtn_Click(object sender, EventArgs e)
         {
             if (ifCriticIsApproved())
             {
-                    if (ifReviewExists())
-                    {
-                        changeNoArticles(-1);
-                        deleteReview();
-                        GridView1.DataBind();
-                        clearForm();
-                        displayToast("warning", "Review", "Review deleted successfully.");
-                    } else { displayToast("error", "Review ID", "Review ID does not match any review."); }
-            } else { displayToast("error", "Approval", "You have not been approved yet to post reviews by Filmy Team. Please, wait."); }
+                if (ifReviewExists())
+                {
+                    changeNoArticles(-1);
+                    deleteReview();
+                    GridView1.DataBind();
+                    clearForm();
+                }
+                else { displayToast("error", "Review ID", "Review ID does not match any review."); }
+            }
+            else { displayToast("error", "Approval", "You have not been approved yet to post reviews by Filmy Team. Please, wait."); }
         }
+
+        // Check if the critic is approved
         bool ifCriticIsApproved()
         {
             try
@@ -120,10 +133,11 @@ namespace FilmyProject
                     con.Close();
                     if (userCount > 0) { return true; } else { return false; }
                 }
-
             }
-            catch (Exception ex) { Response.Write("<script>alert('An error occured. Try later \n " + ex.Message + " ');</script>"); return false; }
+            catch (Exception ex) { Response.Write("<script>alert('An error occurred. Try later \n " + ex.Message + " ');</script>"); return false; }
         }
+
+        // Check if the review exists
         bool ifReviewExists()
         {
             try
@@ -137,10 +151,11 @@ namespace FilmyProject
                     con.Close();
                     if (userCount > 0) { return true; } else { return false; }
                 }
-
             }
-            catch (Exception ex) { Response.Write("<script>alert('An error occured. Try later \n " + ex.Message + " ');</script>"); return false; }
+            catch (Exception ex) { Response.Write("<script>alert('An error occurred. Try later \n " + ex.Message + " ');</script>"); return false; }
         }
+
+        // Get the review details by ID
         void getReviewById()
         {
             try
@@ -158,8 +173,6 @@ namespace FilmyProject
                     movie_id = reader["movie_id"].ToString();
                     ratingBox.Text = reader["rating"].ToString();
                     reviewBox.Text = reader["review_text"].ToString();
-
-                    // Use the retrieved data as needed (e.g., display it in your ASP.NET Web Forms page)
                 }
                 reader.Close();
                 cmd.ExecuteNonQuery();
@@ -181,6 +194,8 @@ namespace FilmyProject
                 Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
         }
+
+        // Get the movie ID by title
         int getMovieIDByTitle()
         {
             try
@@ -193,8 +208,6 @@ namespace FilmyProject
                 if (reader.Read())
                 {
                     id = Int32.Parse(reader["ID"].ToString());
-
-                    // Use the retrieved data as needed (e.g., display it in your ASP.NET Web Forms page)
                 }
                 reader.Close();
                 cmd.ExecuteNonQuery();
@@ -205,6 +218,8 @@ namespace FilmyProject
                 Response.Write(ex.Message); return -1;
             }
         }
+
+        // Add a new review
         void addNewReview()
         {
             try
@@ -219,13 +234,16 @@ namespace FilmyProject
                 cmd.Parameters.AddWithValue("@movie_id", getMovieIDByTitle());
                 cmd.ExecuteNonQuery();
                 con.Close();
-                
+
+                displayToast("success", "Review", "Review added successfully.");
             }
             catch (Exception ex)
             {
                 Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
         }
+
+        // Update an existing review
         void updateReview()
         {
             try
@@ -239,12 +257,16 @@ namespace FilmyProject
                 cmd.Parameters.AddWithValue("@critic_username", Session["username"]);
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                displayToast("success", "Review", "Review updated successfully.");
             }
             catch (Exception ex)
             {
                 Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
         }
+
+        // Delete a review
         void deleteReview()
         {
             try
@@ -255,12 +277,16 @@ namespace FilmyProject
                 cmd.Parameters.AddWithValue("@critic_username", Session["username"]);
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                displayToast("warning", "Review", "Review deleted successfully.");
             }
             catch (Exception ex)
             {
                 Response.Write("<script>alert('" + ex.Message + "');</script>");
             }
         }
+
+        // Clear the form
         void clearForm()
         {
             idBox.Text = "";

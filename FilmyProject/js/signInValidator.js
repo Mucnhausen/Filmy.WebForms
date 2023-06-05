@@ -24,7 +24,7 @@ function validateForm() {
 
     // Password validation
     if (!isValidPassword(password)) {
-        displayError('Password', 'Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.')
+        displayError('Password', 'Password must be at least 8 characters long and contain at least one uppercase letter and one lowercase letter.')
         submitForm = false;
     }
 
