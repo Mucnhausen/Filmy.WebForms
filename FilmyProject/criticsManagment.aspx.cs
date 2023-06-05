@@ -38,7 +38,6 @@ namespace FilmyProject
             if (ifCriticExists())
             {
                 updateCritic();
-                displayToast("success", "Critic", "Critic updated successfully.");
                 DataBind();
             }
         }
@@ -48,7 +47,7 @@ namespace FilmyProject
             if (ifCriticExists())
             {
                 deleteCritic();
-                displayToast("warning", "Critic", "Critic deleted successfully.");
+                clearForm();
                 DataBind();
             }
         }
@@ -98,6 +97,8 @@ namespace FilmyProject
                 cmd.Parameters.AddWithValue("@username", usernameBox.Text.Trim());
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                displayToast("success", "Critic", "Critic updated successfully.");
             }
             catch (Exception ex)
             {
@@ -218,16 +219,22 @@ namespace FilmyProject
             }
         }
 
-        // Method to delete a critic from the database
+        // Method to delete a critic from the database and all reviews related to him
         void deleteCritic()
         {
             try
             {
                 con.Open();
+                SqlCommand cmd2 = new SqlCommand("DELETE FROM reviews WHERE critic_username = @username", con);
+                cmd2.Parameters.AddWithValue("@username", usernameBox.Text.Trim());
+                cmd2.ExecuteNonQuery();
+
                 SqlCommand cmd = new SqlCommand("DELETE FROM critics WHERE username = @username", con);
                 cmd.Parameters.AddWithValue("@username", usernameBox.Text.Trim());
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                displayToast("warning", "Critic", "Critic deleted successfully.");
             }
             catch (Exception ex)
             {

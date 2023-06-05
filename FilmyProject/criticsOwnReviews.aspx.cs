@@ -81,7 +81,6 @@ namespace FilmyProject
                     changeNoArticles(1);
                     addNewReview();
                     clearForm();
-                    displayToast("success", "Review", "Review updated successfully.");
                     GridView1.DataBind();
                 }
                 else { displayToast("error", "Review ID", "Review ID does not match any review."); }
@@ -98,7 +97,6 @@ namespace FilmyProject
                 {
                     updateReview();
                     GridView1.DataBind();
-                    displayToast("success", "Review", "Review updated successfully.");
                 }
                 else { displayToast("error", "Review ID", "Review ID does not match any review."); }
             }
@@ -116,7 +114,6 @@ namespace FilmyProject
                     deleteReview();
                     GridView1.DataBind();
                     clearForm();
-                    displayToast("warning", "Review", "Review deleted successfully.");
                 }
                 else { displayToast("error", "Review ID", "Review ID does not match any review."); }
             }
@@ -237,6 +234,8 @@ namespace FilmyProject
                 cmd.Parameters.AddWithValue("@movie_id", getMovieIDByTitle());
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                displayToast("success", "Review", "Review added successfully.");
             }
             catch (Exception ex)
             {
@@ -258,6 +257,8 @@ namespace FilmyProject
                 cmd.Parameters.AddWithValue("@critic_username", Session["username"]);
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                displayToast("success", "Review", "Review updated successfully.");
             }
             catch (Exception ex)
             {
@@ -276,6 +277,8 @@ namespace FilmyProject
                 cmd.Parameters.AddWithValue("@critic_username", Session["username"]);
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                displayToast("warning", "Review", "Review deleted successfully.");
             }
             catch (Exception ex)
             {

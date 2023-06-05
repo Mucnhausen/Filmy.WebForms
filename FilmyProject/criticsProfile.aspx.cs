@@ -60,14 +60,12 @@ namespace FilmyProject
         {
             updateCritic();
             FillCriticData();
-            displayToast("success", "Info", "Info updated successfully.");
         }
 
         protected void savePasswordBtn_Click(object sender, EventArgs e)
         {
             updateCriticPassword();
             FillCriticData();
-            displayToast("success", "Password", "Password updated successfully.");
         }
 
         // Function to update the critic image path in the database
@@ -99,6 +97,8 @@ namespace FilmyProject
                 cmd.Parameters.AddWithValue("@username", Session["username"]);
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                displayToast("success", "Password", "Password updated successfully.");
             }
             catch (Exception ex)
             {
@@ -184,6 +184,8 @@ namespace FilmyProject
                 cmd.Parameters.AddWithValue("@description", descriptionBox.Text.Trim());
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                displayToast("success", "Info", "Info updated successfully.");
             }
             catch (Exception ex)
             {

@@ -45,7 +45,6 @@ namespace FilmyProject
             {
                 // Send password recovery email and display a success message
                 sendPasswordRecovery(getCriticByUsername());
-                displayToast("success", "PASSWORD REQUEST", "Request was sent successfully.");
                 Response.Redirect("login.aspx");
             }
             else
@@ -145,6 +144,8 @@ namespace FilmyProject
                 client.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
                 client.Authenticate("filmy.community.help@gmail.com", "doadkcgpdoymsyjh");
                 client.Send(message);
+
+                displayToast("success", "PASSWORD REQUEST", "Request was sent successfully.");
             }
             catch (Exception ex)
             {

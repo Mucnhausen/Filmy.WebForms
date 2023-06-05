@@ -52,10 +52,12 @@ namespace FilmyProject
                 Session["username"] = usernameBox.Text.Trim();
 
                 // Display success toast notification
-                displayToast("success", "SIGN IN", "You are successfully signed in.");
 
                 // Send success sign-in email
                 sendSuccessSignInEmail();
+
+                displayToast("success", "SIGN IN", "You are successfully signed in.");
+
 
                 // Clear the form fields
                 clearForm();

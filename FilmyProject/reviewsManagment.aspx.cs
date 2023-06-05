@@ -91,7 +91,6 @@ namespace FilmyProject
             {
                 updateReview();
                 GridView1.DataBind();
-                Response.Write("<script>alert('Review updated successfully.');</script>");
             }
             else { displayToast("error", "Review ID", "Review ID does not match any existing review."); }
         }
@@ -104,7 +103,6 @@ namespace FilmyProject
                 deleteReview();
                 GridView1.DataBind();
                 clearForm();
-                Response.Write("<script>alert('Review deleted successfully.');</script>");
             }
             else { displayToast("error", "Review ID", "Review ID does not match any existing review."); }
         }
@@ -199,7 +197,10 @@ namespace FilmyProject
                 cmd.Parameters.AddWithValue("@rating", ratingBox.Text.Trim());
                 cmd.ExecuteNonQuery();
                 con.Close();
-            }
+
+                displayToast("success", "Review", "Review updated successfully.");
+
+    }
             catch (Exception ex)
             {
                 Response.Write("<script>alert('" + ex.Message + "');</script>");
@@ -215,6 +216,8 @@ namespace FilmyProject
                 cmd.Parameters.AddWithValue("@id", idBox.Text.Trim());
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                displayToast("warning", "Review", "Review deleted successfully.");
             }
             catch (Exception ex)
             {

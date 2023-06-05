@@ -19,6 +19,8 @@ namespace FilmyProject
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            hrefCritic.Style["text-decoration"] = "none";
+            hrefMovie.Style["text-decoration"] = "none";
             // Check if the review exists
             if (ifReviewExists())
             {
@@ -82,6 +84,9 @@ namespace FilmyProject
                     {
                         // Display the critic's username and review text
                         username.Text = reader["critic_username"].ToString();
+
+                        hrefCritic.HRef = "critic.aspx?username=" + reader["critic_username"].ToString();
+
                         review_text.Text = reader["review_text"].ToString();
                         movie_id = reader["movie_id"].ToString();
 
@@ -130,6 +135,9 @@ namespace FilmyProject
 
                         // Display the movie's title, budget, genres, actors, producers, and publish date
                         title.Text = reader["movie_name"].ToString();
+
+                        hrefMovie.HRef = "movie.aspx?id=" + movie_id;
+
                         budget.Text = reader["budget"].ToString();
                         genres.Text = reader["genres"].ToString();
                         actors.Text = reader["actors"].ToString();

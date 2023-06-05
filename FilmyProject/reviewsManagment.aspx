@@ -27,7 +27,7 @@
         <div class="main">
             <div class="main-form">
                 <div class="slogan">
-                    <h1 class="slogan-text">You are the power!</h1>
+                    <h1 class="slogan-text">To delete or not to delete!</h1>
                 </div>
                 <div class="form" action="">
                     <div class="row">

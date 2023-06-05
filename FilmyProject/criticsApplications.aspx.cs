@@ -53,8 +53,6 @@ namespace FilmyProject
             acceptCritic();
             // Refreshing the GridView
             GridView1.DataBind();
-            // Displaying a success toast notification
-            displayToast("success", "Critic", "Critic accepted successfully.");
             // Clearing the form
             clearForm();
         }
@@ -65,8 +63,6 @@ namespace FilmyProject
             declineCritic();
             // Refreshing the GridView
             GridView1.DataBind();
-            // Displaying a warning toast notification
-            displayToast("warning", "Critic", "Critic declined successfully.");
             // Clearing the form
             clearForm();
         }
@@ -142,6 +138,9 @@ namespace FilmyProject
                 cmd.Parameters.AddWithValue("@username", usernameBox.Text.Trim());
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                // Displaying a success toast notification
+                displayToast("success", "Critic", "Critic accepted successfully.");
             }
             catch (Exception ex)
             {
@@ -160,6 +159,9 @@ namespace FilmyProject
                 cmd.Parameters.AddWithValue("@username", usernameBox.Text.Trim());
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                // Displaying a warning toast notification
+                displayToast("warning", "Critic", "Critic declined successfully.");
             }
             catch (Exception ex)
             {

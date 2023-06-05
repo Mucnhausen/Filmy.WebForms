@@ -33,6 +33,21 @@ namespace FilmyProject
             ClientScript.RegisterStartupScript(this.GetType(), "toastr_custom", "toastr." + type + "('" + message + "', '" + title + "', { timeOut: 5000, progressBar: true, preventDuplicates: true, extendedTimeOut: 2000 });", true);
         }
 
+        void changeNoArticles()
+        {
+            try
+            {
+                // Decrease articles number for every critic with reviews related to movie
+                using (SqlCommand sqlCommand = new SqlCommand("UPDATE critics SET articles = CAST( no_articles AS INT) - 1 WHERE username IN (SELECT critic_username FROM reviews WHERE movie_id = @id)", con))
+                {
+                    con.Open();
+                    sqlCommand.Parameters.AddWithValue("@id", idBox.Text.ToString());
+                    con.Close();
+                }
+            }
+            catch (Exception ex) { Response.Write("<script>alert('An error occurred. Try later \n " + ex.Message + " ');</script>"); }
+        }
+
         protected void findBtn_Click(object sender, EventArgs e)
         {
             // Find a movie by its ID
@@ -131,7 +146,6 @@ namespace FilmyProject
             {
                 addNewMovie();
                 clearForm();
-                displayToast("successfull", "Movie ID", "Movie added successfully.");
                 DataBind();
             }
         }
@@ -142,7 +156,6 @@ namespace FilmyProject
             if (ifMovieExists())
             {
                 updateMovie();
-                displayToast("success", "Movie ID", "Movie updated successfully.");
                 DataBind();
             }
             else
@@ -158,7 +171,6 @@ namespace FilmyProject
             {
                 deleteMovie();
                 clearForm();
-                displayToast("warning", "Movie ID", "Movie deleted successfully.");
                 DataBind();
             }
             else
@@ -186,6 +198,7 @@ namespace FilmyProject
                     dateBox.Text = DateTime.Parse(reader["date"].ToString()).ToString("yyyy-MM-dd");
                     ratingBox.Text = reader["rating"].ToString();
                     budgetBox.Text = reader["budget"].ToString();
+                    descriptionBox.Text = reader["description"].ToString();
                 }
 
                 reader.Close();
@@ -273,6 +286,8 @@ namespace FilmyProject
                 cmd.Parameters.AddWithValue("@image_path", "images/main_content/default_movie.jpg");
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                displayToast("successfull", "Movie ID", "Movie added successfully.");
             }
             catch (Exception ex)
             {
@@ -298,6 +313,8 @@ namespace FilmyProject
                 cmd.Parameters.AddWithValue("@description", descriptionBox.Text.Trim());
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                displayToast("success", "Movie ID", "Movie updated successfully.");
             }
             catch (Exception ex)
             {
@@ -309,12 +326,20 @@ namespace FilmyProject
         {
             try
             {
-                // Delete a movie from the database
+                // Decrease article number of each user with reviews related to movie, delete movie and all reviews related to it.
+                changeNoArticles();
+
                 con.Open();
+                SqlCommand cmd2 = new SqlCommand("DELETE FROM reviews WHERE movie_id = @id", con);
+                cmd2.Parameters.AddWithValue("@id", idBox.Text.Trim());
+                cmd2.ExecuteNonQuery();
+
                 SqlCommand cmd = new SqlCommand("DELETE FROM movies WHERE Id = @id", con);
                 cmd.Parameters.AddWithValue("@id", idBox.Text.Trim());
                 cmd.ExecuteNonQuery();
                 con.Close();
+
+                displayToast("warning", "Movie ID", "Movie deleted successfully.");
             }
             catch (Exception ex)
             {
