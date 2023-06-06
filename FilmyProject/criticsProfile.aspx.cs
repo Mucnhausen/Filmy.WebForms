@@ -42,7 +42,7 @@ namespace FilmyProject
                 string fileType = Path.GetFileName(FileUpload1.PostedFile.ContentType);
                 string previousPath = getPreviousPicturePath();
 
-                if (Path.GetExtension(previousPath) != fileType)
+                if (Path.GetExtension(previousPath) != fileType && Path.GetFileName(Path.GetDirectoryName(previousPath)) != "main_content")
                 {
                     File.Delete(Server.MapPath("\\") + previousPath);
                 }
