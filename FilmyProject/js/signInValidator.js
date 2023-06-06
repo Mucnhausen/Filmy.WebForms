@@ -79,7 +79,7 @@ function isValidEmail(email) {
 }
 
 function isValidPassword(password) {
-    var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])[A-Za-z]{8,}$/;
+    var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
     return passwordRegex.test(password);
 }
 
